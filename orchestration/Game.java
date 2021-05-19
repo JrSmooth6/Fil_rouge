@@ -59,7 +59,15 @@ public class Game{
 			tas.melangeDeck();
 			BlackJack bj = new BlackJack(p1,p2,tas,0,0,true,true);
 			capichef.playGame(bj);
-			
+		}
+		else if (jeu ==5) {
+			GamePlayer p1 =new Human("h",0);
+			GamePlayer p2 = new Human("C",0);
+			int[][]gridj1=null;
+			int[][]gridj2=null;
+			BatailleNavale bn = new BatailleNavale(p1,p2,gridj1,gridj2);
+			bn.initGame();
+			capichef.playGame(bn);
 		}
 
 		
@@ -88,9 +96,9 @@ public class Game{
 	public int  choixJeu() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("A quel jeu souhaiter vous jouer ? ");
-		System.out.println("1 : Bataille ; 2 : Morpion ; 3 : Nim ; 4 : BlackJack");
+		System.out.println("1 : Bataille ; 2 : Morpion ; 3 : Nim ; 4 : BlackJack ; 5 : Bataille Navale ");
 		int jeu = scanner.nextInt();
-		while(jeu>4) {
+		while(jeu>5) {
 			System.out.println("Veuillez selectionnez un jeu");
 			jeu = scanner.nextInt();
 		}
