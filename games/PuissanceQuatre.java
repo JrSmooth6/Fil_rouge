@@ -55,10 +55,20 @@ public class PuissanceQuatre extends AbstractGame{
 		}
 		return false;
 	}
-	public boolean verifLigne(GamePlayer p1) {
+	public boolean verifLigneH(GamePlayer p1) {
 		for (int i = 0; i<grid.length;i++) {
 			for (int j = 0;j<4;j++) {
-				if((grid[i][j]==p1) && (grid[i][j+1]==p1) && (grid[i][j+2]==p1) && (grid[i][j=3]==p1)) {
+				if((grid[i][j]==p1) && (grid[i][j+1]==p1) && (grid[i][j+2]==p1) && (grid[i][j+3]==p1)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	public boolean verifLigneV(GamePlayer p1) {
+		for (int i= 0 ; i<3;i++) {
+			for (int j = 0 ;j<grid[i].length;j++){
+				if((grid[i][j]==p1) && (grid[i+1][j]==p1) && (grid[i+2][j]==p1) && (grid[i+3][j]==p1)) {
 					return true;
 				}
 			}
@@ -69,10 +79,10 @@ public class PuissanceQuatre extends AbstractGame{
 		this.grid[this.getProfondeur(nb)][nb]= this.p_courant;
 	}
 	public Boolean isOver() {
-		if((this.verifDiagDG(p1)==true)||(this.verifDiagGD(p1)==true)||(this.verifLigne(p1)==true)){
+		if((this.verifDiagDG(p1)==true)||(this.verifDiagGD(p1)==true)||(this.verifLigneH(p1)==true) || (this.verifLigneV(p1)==true)){
 			return true;
 		}
-		else if((this.verifDiagDG(p2)==true)||(this.verifDiagGD(p2)==true)||(this.verifLigne(p2)==true)){
+		else if((this.verifDiagDG(p2)==true)||(this.verifDiagGD(p2)==true)||(this.verifLigneH(p2)==true) || (this.verifLigneV(p2)==true)){
 			return true;
 		}else {
 			return false;
@@ -111,10 +121,10 @@ public class PuissanceQuatre extends AbstractGame{
 	}
 	@Override
 	public GamePlayer getWinner() {
-		if((this.verifDiagDG(p1)==true)||(this.verifDiagGD(p1)==true)||(this.verifLigne(p1)==true)){
+		if((this.verifDiagDG(p1)==true)||(this.verifDiagGD(p1)==true)||(this.verifLigneH(p1)==true) || (this.verifLigneV(p1)==true)){
 			return p1;
 		}
-		else if((this.verifDiagDG(p2)==true)||(this.verifDiagGD(p2)==true)||(this.verifLigne(p2)==true)){
+		else if((this.verifDiagDG(p2)==true)||(this.verifDiagGD(p2)==true)||(this.verifLigneH(p2)==true) || (this.verifLigneV(p2)==true)){
 			return p2;
 		}else {
 			return p1;
