@@ -69,6 +69,13 @@ public class Game{
 			bn.initGame();
 			capichef.playGame(bn);
 		}
+		else if(jeu==6) {
+			GamePlayer p1 = new Human("h",0);
+			GamePlayer p2 = new MinMaxPlayer(0);
+			PuissanceQuatre pq = new PuissanceQuatre(p1,p2);
+			capichef.playGame(pq);
+
+		}
 
 		
 	}
@@ -96,9 +103,9 @@ public class Game{
 	public int  choixJeu() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("A quel jeu souhaiter vous jouer ? ");
-		System.out.println("1 : Bataille ; 2 : Morpion ; 3 : Nim ; 4 : BlackJack ; 5 : Bataille Navale ");
+		System.out.println("1 : Bataille ; 2 : Morpion ; 3 : Nim ; 4 : BlackJack ; 5 : Bataille Navale  ; 6 : Puissance 4");
 		int jeu = scanner.nextInt();
-		while(jeu>5) {
+		while(jeu>6) {
 			System.out.println("Veuillez selectionnez un jeu");
 			jeu = scanner.nextInt();
 		}

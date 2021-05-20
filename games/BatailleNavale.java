@@ -119,10 +119,9 @@ public class BatailleNavale extends AbstractGame {
 		
 	}
 
-	@Override
 	public AbstractGame getCopy() {
-		// TODO Auto-generated method stub
-		return null;
+		BatailleNavale bn = this ;
+		return bn;
 	}
 
 }
