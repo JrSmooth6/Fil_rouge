@@ -34,55 +34,67 @@ public class PuissanceQuatre extends AbstractGame{
 		}
 		
 	}
-	
-	public boolean verifDiagGD(GamePlayer p1) {
+	public GamePlayer verif(GamePlayer p) {
+		if (this.verifDiagGD(p)!=null) {
+			return this.verifDiagGD(p);
+		}
+		 if (this.verifDiagDG(p)!=null) {
+			return this.verifDiagDG(p);
+		}
+		 if (this.verifLigneH(p)!=null) {
+			return this.verifLigneH(p);
+		}
+		 if (this.verifLigneV(p)!=null) {
+			return this.verifLigneV(p );
+		}else {
+			return null;
+		}
+	}
+	public GamePlayer verifDiagGD(GamePlayer p) {
 		for (int i = 0; i<3;i++) {
 			for (int j=0;j<4;j++) {
-				if( (grid[i][j]==p1) && (grid[i+1][j+1]==p1) && (grid[i+2][j+2]==p1) && (grid[i+3][j+3]==p1)) {
-					return true;
+				if( grid[i][j]== p && grid[i+1][j+1]==p && grid[i+1][j+1]== p && grid[i+2][j+2]==p && grid[i+2][j+2]== p && grid[i+3][j+3]==p) {
+					return p;
 				}
 			}
 		}
-		return false;
+		return null;
 	}
-	public boolean verifDiagDG(GamePlayer p1) {
+	public GamePlayer verifDiagDG(GamePlayer p) {
 		for (int i = 5; i>2;i=i-1) {
 			for (int j=0;j<4;j++) {
-				if( (grid[i][j]==p1) && (grid[i-1][j+1]==p1) && (grid[i-2][j+2]==p1) && (grid[i-3][j+3]==p1)) {
-					return true;
+				if( grid[i][j]==p && grid[i-1][j+1]==p && grid[i-1][j+1]==p && grid[i-2][j+2]==p  && grid[i-2][j+2]== p &&grid[i-3][j+3]==p) {
+					return p;
 				}
 			}
 		}
-		return false;
+		return null;
 	}
-	public boolean verifLigneH(GamePlayer p1) {
+	public GamePlayer verifLigneH(GamePlayer p) {
 		for (int i = 0; i<grid.length;i++) {
 			for (int j = 0;j<4;j++) {
-				if((grid[i][j]==p1) && (grid[i][j+1]==p1) && (grid[i][j+2]==p1) && (grid[i][j+3]==p1)) {
-					return true;
+				if(grid[i][j] == p && grid[i][j+1]==p&& grid[i][j+1]== p && grid [i][j+2]==p  && grid[i][j+2]==p &&grid [i][j+3]==p) {
+					return p;
 				}
 			}
 		}
-		return false;
+		return null;
 	}
-	public boolean verifLigneV(GamePlayer p1) {
+	public GamePlayer verifLigneV(GamePlayer p) {
 		for (int i= 0 ; i<3;i++) {
 			for (int j = 0 ;j<grid[i].length;j++){
-				if((grid[i][j]==p1) && (grid[i+1][j]==p1) && (grid[i+2][j]==p1) && (grid[i+3][j]==p1)) {
-					return true;
+				if(grid[i][j] == p && grid[i+1][j]== p && grid[i+1][j]== p && grid [i+2][j]== p && grid[i+2][j]== p && grid [i+3][j]== p)  {
+					return p;
 				}
 			}
 		}
-		return false;
+		return null;
 	}
 	public void execUnCoup(int nb) {
 		this.grid[this.getProfondeur(nb)][nb]= this.p_courant;
 	}
 	public Boolean isOver() {
-		if((this.verifDiagDG(p1)==true)||(this.verifDiagGD(p1)==true)||(this.verifLigneH(p1)==true) || (this.verifLigneV(p1)==true)){
-			return true;
-		}
-		else if((this.verifDiagDG(p2)==true)||(this.verifDiagGD(p2)==true)||(this.verifLigneH(p2)==true) || (this.verifLigneV(p2)==true)){
+		if(this.verif(this.p1)!=null||this.verif(this.p2)!=null) {
 			return true;
 		}else {
 			return false;
@@ -119,19 +131,14 @@ public class PuissanceQuatre extends AbstractGame{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
 	public GamePlayer getWinner() {
-		if((this.verifDiagDG(p1)==true)||(this.verifDiagGD(p1)==true)||(this.verifLigneH(p1)==true) || (this.verifLigneV(p1)==true)){
-			return p1;
-		}
-		else if((this.verifDiagDG(p2)==true)||(this.verifDiagGD(p2)==true)||(this.verifLigneH(p2)==true) || (this.verifLigneV(p2)==true)){
-			return p2;
+		if(this.verif(this.p1)!=null) {
+			return this.p1;
 		}else {
-			return p1;
+			return this.p2;
 		}
 	}
 	
-	@Override
     public AbstractGame getCopy(){//Methode qui copie la grille du jeu en profondeur pour prévoir les meilleurs coups avec MinMaxPlayer
         PuissanceQuatre res = new PuissanceQuatre(super.p1,super.p2);
         for (int i=0; i<grid.length ; i++){

@@ -70,8 +70,10 @@ public class Game{
 			capichef.playGame(bn);
 		}
 		else if(jeu==6) {
-			GamePlayer p1 = new Human("h",0);
-			GamePlayer p2 = new MinMaxPlayer(0);
+			System.out.println("Joueur 1 : ");
+			GamePlayer p1 = this.choixJoueur();
+			System.out.println("Joueur 2 : ");
+			GamePlayer p2 = this.choixJoueur();
 			PuissanceQuatre pq = new PuissanceQuatre(p1,p2);
 			capichef.playGame(pq);
 
