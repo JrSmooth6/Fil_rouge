@@ -16,7 +16,7 @@ public class MinMaxPlayer implements GamePlayer{
 
     //Méthode qui retourne le meilleur coup possible en vue de la situation actuelle selon l'algorithme negamax
     public int chooseMove(AbstractGame game){
-        return negamax(game, game.p_courant);
+        return minmax(game, game.p_courant);
     }
 
     //Méthode qui evalue la situation
@@ -43,7 +43,7 @@ public class MinMaxPlayer implements GamePlayer{
     }
 
     //Algorithme negamax qui retourne en fonction de l'evaluation le meilleur coup possible
-    public int negamax(AbstractGame situation, GamePlayer p_courant){
+    public int minmax(AbstractGame situation, GamePlayer p_courant){
         int valeur = -10;
         int meilleureValeur = -10;
         int meilleurCoup = -10;

@@ -6,8 +6,8 @@ import players.*;
 public class BlackJack extends AbstractGame{
 	
 	public Deck deck;
-	int totalj1;
-	int totalj2;
+	public int totalj1;
+	public int totalj2;
 	boolean statutJ1;
 	boolean statutJ2;
 	public BlackJack(GamePlayer p1, GamePlayer p2, Deck deck,int totalj1,int totalj2,boolean statutJ1,boolean statutJ2) {

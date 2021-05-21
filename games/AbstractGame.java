@@ -7,7 +7,8 @@ import java.util.ArrayList;
 //Classe abstraite qui regroupe les methodes generales pour tous les jeux
 public abstract class AbstractGame{
     //On definit les 2 joueurs et le joueur courant comme etant public
-    GamePlayer p1,p2;
+    public GamePlayer p1;
+	public GamePlayer p2;
     public GamePlayer p_courant;
 
     //Constructeur de la classe
