@@ -123,5 +123,15 @@ public class BatailleNavale extends AbstractGame {
 		BatailleNavale bn = this ;
 		return bn;
 	}
+	@Override
+	public int getHeuristicValue(GamePlayer p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void jouerUnCoup(int nb) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

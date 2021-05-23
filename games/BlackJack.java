@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import cartesAJouer.*;
 import players.*;
-public class BlackJack extends AbstractGame{
+public class BlackJack extends AbstractGame2JSansHasard{
 	
 	public Deck deck;
 	public int totalj1;
@@ -96,8 +96,15 @@ public class BlackJack extends AbstractGame{
 
 
 	@Override
-	public AbstractGame getCopy() {
+	public AbstractGame2JSansHasard getCopy() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public int getHeuristicValue(GamePlayer p) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

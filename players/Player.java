@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import cartesAJouer.Carte;
 import cartesAJouer.Deck;
 import games.AbstractGame;
+import games.AbstractGame2JSansHasard;
 public class Player implements GamePlayer{
 	public String name;
 	public Deck deck;

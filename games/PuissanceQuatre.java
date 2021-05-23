@@ -5,7 +5,7 @@ import java.util.List;
 
 import players.GamePlayer;
 
-public class PuissanceQuatre extends AbstractGame{
+public class PuissanceQuatre extends AbstractGame2JSansHasard{
 	public GamePlayer [][] grid;
 	public PuissanceQuatre(GamePlayer p1, GamePlayer p2) {
 		super(p1,p2);
@@ -102,7 +102,7 @@ public class PuissanceQuatre extends AbstractGame{
 	}
 	public List<Integer> validMoves() {
 		List<Integer>list = new ArrayList<>();
-		for (int i =0; i<grid.length;i++) {
+		for (int i =0; i<grid.length+1;i++) {
 			if(this.getProfondeur(i)!=10) {
 				list.add(i);
 			}
@@ -139,7 +139,7 @@ public class PuissanceQuatre extends AbstractGame{
 		}
 	}
 	
-    public AbstractGame getCopy(){//Methode qui copie la grille du jeu en profondeur pour prévoir les meilleurs coups avec MinMaxPlayer
+    public AbstractGame2JSansHasard getCopy(){//Methode qui copie la grille du jeu en profondeur pour prévoir les meilleurs coups avec MinMaxPlayer
         PuissanceQuatre res = new PuissanceQuatre(super.p1,super.p2);
         for (int i=0; i<grid.length ; i++){
             for (int j=0; j<this.grid[0].length ; j++){
@@ -150,5 +150,11 @@ public class PuissanceQuatre extends AbstractGame{
         res.p_courant = super.p_courant;
         return res;
     }
+
+	@Override
+	public int getHeuristicValue(GamePlayer p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

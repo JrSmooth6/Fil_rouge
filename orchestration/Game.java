@@ -90,8 +90,8 @@ public class Game{
 			String nom = scanner.nextLine();
 			GamePlayer joueur = new Human(nom,0);
 			return joueur; 
-		}else if (type.compareTo("minmax")==0) {
-			GamePlayer joueur = new MinMaxPlayer(0);
+		}else if (type.compareTo("negamax")==0) {
+			GamePlayer joueur = new NegaMax(0);
 			return joueur;
 		}else if(type.compareTo("random")==0) {
 			GamePlayer joueur = new RandomPlayer(0);

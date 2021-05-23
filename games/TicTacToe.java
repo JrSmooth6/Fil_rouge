@@ -3,7 +3,7 @@ import players.*;
 import java.util.List;
 import java.util.ArrayList;
 
-public class TicTacToe extends AbstractGame{ /* La  classe TicTacToe est une extension AbstractGame (classe abstraite)*/
+public class TicTacToe extends AbstractGame2JSansHasard{ /* La  classe TicTacToe est une extension AbstractGame (classe abstraite)*/
     public GamePlayer [][] grid; /* Cette variable correpond à une grille dans laquelle les objets seront des joueurs */
 
     public TicTacToe(GamePlayer p1, GamePlayer p2){
@@ -89,7 +89,7 @@ public class TicTacToe extends AbstractGame{ /* La  classe TicTacToe est une ext
         return null; //pas de gagnant ? on retourne null
     }
 
-    public AbstractGame getCopy(){//Methode qui copie la grille du jeu en profondeur pour prévoir les meilleurs coups avec MinMaxPlayer
+    public AbstractGame2JSansHasard getCopy(){//Methode qui copie la grille du jeu en profondeur pour prévoir les meilleurs coups avec MinMaxPlayer
         TicTacToe res = new TicTacToe(super.p1,super.p2);
         for (int i=0; i<grid.length ; i++){
             for (int j=0; j<this.grid[0].length ; j++){
@@ -103,4 +103,10 @@ public class TicTacToe extends AbstractGame{ /* La  classe TicTacToe est une ext
     public Boolean isOver(){
         return (validMoves().size() == 0 || getWinner() != null);
     }
+
+	@Override
+	public int getHeuristicValue(GamePlayer p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

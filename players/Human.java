@@ -43,4 +43,7 @@ public class Human implements GamePlayer{
 	//On retourne le coup joué
         return nb;
     }
+
+
+
 }

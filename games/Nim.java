@@ -3,7 +3,7 @@ import players.*;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Nim extends AbstractGame{  /* La classeNim est une extension AbstractGame (classe abstraite)*/
+public class Nim extends AbstractGame2JSansHasard{  /* La classeNim est une extension AbstractGame (classe abstraite)*/
     int taille_ini; /* Cette variable correpond aux nombres d'allumettes au debut du jeu*/
     int taille_courant;    /* Cette variable est modifié au cours de la partie du jeu est correspond aux nombres d'allumettes restantes */
     int nb_max; /* Cette variable définie le nombre maximum d'allumettes pouvant être retiré
@@ -59,7 +59,7 @@ public class Nim extends AbstractGame{  /* La classeNim est une extension Abstra
         } else { return null; }   /* pas de vainceur*/
     }
 
-    public AbstractGame getCopy(){ /*Methode servant a MinMaxPlayer pour faire la copie de la situationdu jeu afin de prévoir le meilleur coup*/
+    public AbstractGame2JSansHasard getCopy(){ /*Methode servant a MinMaxPlayer pour faire la copie de la situationdu jeu afin de prévoir le meilleur coup*/
         Nim res = new Nim(this.taille_ini,this.nb_max,super.p1,super.p2);
         res.taille_courant = this.taille_courant;
         res.p_courant = super.p_courant;
@@ -68,4 +68,10 @@ public class Nim extends AbstractGame{  /* La classeNim est une extension Abstra
     public Boolean isOver(){
         return (validMoves().size() == 0 || getWinner() != null);
     }
+
+	@Override
+	public int getHeuristicValue(GamePlayer p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

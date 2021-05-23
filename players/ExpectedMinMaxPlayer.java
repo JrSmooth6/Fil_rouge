@@ -27,12 +27,12 @@ public class ExpectedMinMaxPlayer {
 				   alpha = Math.max(alpha,expectiMinMax(situation2, profondeur -1));
 			   }
 			   return alpha;
-		   }else if (???) {
+		   }else if (game.p_courant == ) {
 			   int alpha = 0;
 			   for(int coup : game.validMoves()) {
 				   AbstractGame situation2 = game.getCopy();
 				   situation2.jouerUnCoup(coup);
-				   alpha += (1/52*expectiMinMax(situation2, profondeur-1));
+				   alpha += (1/26*expectiMinMax(situation2, profondeur-1));
 			   }
 			   return alpha;
 		   }

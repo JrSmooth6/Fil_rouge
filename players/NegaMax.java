@@ -3,9 +3,9 @@ import games.*;
 import java.util.Random;
 
 //Classe du joueur MinMax, le joueur automatique et relativement optimisé
-public class MinMaxPlayer implements GamePlayer{
+public class NegaMax implements GamePlayer{
 	int total;
-    public MinMaxPlayer(int total){
+    public NegaMax(int total){
     	this.total = total;
     }
 
@@ -32,9 +32,9 @@ public class MinMaxPlayer implements GamePlayer{
         }
         else{ //la situation n'est pas finale
             int res = -10;
-            AbstractGame situation2;
+            AbstractGame2JSansHasard situation2;
             for (int coup : situation.validMoves()) {
-                situation2 = situation.getCopy();
+                situation2 = (AbstractGame2JSansHasard) situation.getCopy();
                 situation2.jouerUnCoup(coup);
                 res = Math.max(res, -evaluer(situation2, situation2.p_courant));
             }
@@ -50,7 +50,7 @@ public class MinMaxPlayer implements GamePlayer{
         AbstractGame situation2;
 
         for (int coup : situation.validMoves()) {
-            situation2 = situation.getCopy();
+            situation2 =  situation.getCopy();
             situation2.jouerUnCoup(coup);
             valeur = -evaluer(situation2, situation2.p_courant);
             if (valeur > meilleureValeur){
@@ -60,4 +60,8 @@ public class MinMaxPlayer implements GamePlayer{
         }
         return meilleurCoup;
     }
+
+
+
+
 }
