@@ -2,21 +2,21 @@ package players;
 import games.*;
 import java.util.Random;
 
-//Classe du joueur MinMax, le joueur automatique et relativement optimisé
+//Classe du joueur negaMax, le joueur automatique et relativement optimisé
 public class NegaMax implements GamePlayer{
 	int total;
     public NegaMax(int total){
     	this.total = total;
     }
 
-    //Méthode qui retourne le "nom" du joueur MinMax(Nombre aléatoire)
+    //Méthode qui retourne le "nom" du joueur negaMax(Nombre aléatoire)
     public String toString(){
         return "Joueur optimisé #" + this.hashCode();
     }
 
     //Méthode qui retourne le meilleur coup possible en vue de la situation actuelle selon l'algorithme negamax
     public int chooseMove(AbstractGame game){
-        return minmax(game, game.p_courant);
+        return negaMax(game, game.p_courant);
     }
 
     //Méthode qui evalue la situation
@@ -43,7 +43,7 @@ public class NegaMax implements GamePlayer{
     }
 
     //Algorithme negamax qui retourne en fonction de l'evaluation le meilleur coup possible
-    public int minmax(AbstractGame situation, GamePlayer p_courant){
+    public int negaMax(AbstractGame situation, GamePlayer p_courant){
         int valeur = -10;
         int meilleureValeur = -10;
         int meilleurCoup = -10;
