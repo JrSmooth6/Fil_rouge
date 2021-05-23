@@ -5,11 +5,11 @@ import cartesAJouer.Carte;
 import cartesAJouer.Deck;
 import games.AbstractGame;
 import games.AbstractGame2JSansHasard;
-public class Player implements GamePlayer{
+public class BataillePlayer implements GamePlayer{
 	public String name;
 	public Deck deck;
 	public int total;
-	public Player(String name, Deck deck, int total) {
+	public BataillePlayer(String name, Deck deck, int total) {
 		this.name = name;
 		this.deck = deck;
 		this.total = total;

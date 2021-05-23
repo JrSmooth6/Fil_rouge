@@ -23,8 +23,8 @@ public class Game{
 			ArrayList<Carte> tas2 = new ArrayList<Carte>();
 			Deck deck = new Deck(tas);
 			Deck deck2 = new Deck(tas2);
-			Player p1 = new Player(j1,deck,0);
-			Player p2 = new Player(j2,deck2,0);
+			BataillePlayer p1 = new BataillePlayer(j1,deck,0);
+			BataillePlayer p2 = new BataillePlayer(j2,deck2,0);
 			Bataille bataille = new Bataille(p1,p2);
 			bataille.jeu();		
 		}

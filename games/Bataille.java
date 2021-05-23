@@ -6,12 +6,12 @@ import java.util.Collections;
 
 import cartesAJouer.Carte;
 import cartesAJouer.Deck;
-import players.Player;
+import players.BataillePlayer;
 
 public class Bataille {
-	Player p1;
-	Player p2;
-	public Bataille(Player p1, Player p2) {
+	BataillePlayer p1;
+	BataillePlayer p2;
+	public Bataille(BataillePlayer p1, BataillePlayer p2) {
 		this.p1 = p1;
 		this.p2 = p2;
 	}
@@ -58,7 +58,7 @@ public class Bataille {
 		
 		
 	}
-	public void gagnantManche(Player p1, Player p2, Carte Cj1, Carte Cj2, ArrayList<Carte> fosseCommune) {
+	public void gagnantManche(BataillePlayer p1, BataillePlayer p2, Carte Cj1, Carte Cj2, ArrayList<Carte> fosseCommune) {
 
 		if( Cj1.valeur > Cj2.valeur) {
 			p1.ajoutCartes(fosseCommune);
@@ -69,12 +69,12 @@ public class Bataille {
 			this.gestionEgalite(p1, p2, fosseCommune);
 		}
 	}
-	public void gestionEgalite(Player p1, Player p2, ArrayList<Carte> fosseCommune) {
+	public void gestionEgalite(BataillePlayer p1, BataillePlayer p2, ArrayList<Carte> fosseCommune) {
 		if(!gestionEgaliteSansCarte(p1,p2,fosseCommune)) {
 			gestionEgaliteAvec1Carte(p1, p2, fosseCommune);
 		}
 	}
-	public boolean gestionEgaliteSansCarte(Player p1, Player p2, ArrayList<Carte>fosseCommune) {
+	public boolean gestionEgaliteSansCarte(BataillePlayer p1, BataillePlayer p2, ArrayList<Carte>fosseCommune) {
 		if ((p1.deck.deck.size()==0)&&(p2.deck.deck.size()==0)) {
 			if (p1.deck.deck.size()>p2.deck.deck.size()) {
 				p1.ajoutCartes(fosseCommune);
@@ -85,7 +85,7 @@ public class Bataille {
 		}
 		return false;
 	}
-	public void gestionEgaliteAvec1Carte(Player p1, Player p2,ArrayList<Carte>fosseCommune) {
+	public void gestionEgaliteAvec1Carte(BataillePlayer p1, BataillePlayer p2,ArrayList<Carte>fosseCommune) {
 		if((p1.deck.deck.size() >=1)&&(p2.deck.deck.size()>=1)) {
 			Carte Cj1tmp = p1.pioche();
 			Carte Cj2tmp = p2.pioche();
@@ -99,7 +99,7 @@ public class Bataille {
 			}
 		}
 	}
-	public boolean gestionEgaliteAvec2Cartes(Player p1, Player p2, ArrayList<Carte>fosseCommune) {
+	public boolean gestionEgaliteAvec2Cartes(BataillePlayer p1, BataillePlayer p2, ArrayList<Carte>fosseCommune) {
 		if((p1.deck.deck.size()>=2)&&(p2.deck.deck.size()>=2)) {
 			Carte Cj1 = p1.pioche();
 			Carte Cj2 = p2.pioche();
@@ -114,7 +114,7 @@ public class Bataille {
 		
 	}
 	
-	public void afficheGagnant(Player player) {
+	public void afficheGagnant(BataillePlayer player) {
 		System.out.println(player.name + " est le gagnat de la partie ");
 	}
 	public static void main(String[] args){
@@ -122,8 +122,8 @@ public class Bataille {
 		ArrayList<Carte> tas2 = new ArrayList<Carte>();
 		Deck deck = new Deck(tas);
 		Deck deck2 = new Deck(tas2);
-		Player p1 = new Player("Hadrien",deck,0);
-		Player p2 = new Player("Pierre",deck2,0);
+		BataillePlayer p1 = new BataillePlayer("Hadrien",deck,0);
+		BataillePlayer p2 = new BataillePlayer("Pierre",deck2,0);
 		Bataille bataille = new Bataille(p1,p2);
 		bataille.jeu();
 
