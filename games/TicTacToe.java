@@ -6,10 +6,7 @@ import java.util.ArrayList;
 public class TicTacToe extends AbstractGame2JSansHasard{ /* La  classe TicTacToe est une extension AbstractGame (classe abstraite)*/
     public GamePlayer [][] grid; /* Cette variable correpond à une grille dans laquelle les objets seront des joueurs */
 
-    public TicTacToe(GamePlayer p1, GamePlayer p2){
-        super(p1,p2); /* p1 et p2 sont définies dans AbstractGame, ils correspondent aux joueurs*/
-        this.grid = new GamePlayer [3][3]; /* Initialisation de la grille du jeu de taille 3*3 */
-    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 
     public void execUnCoup(int nb){ /*méthode pour executer un coup */
         if (!validMoves().contains(nb)){ /*Si le nombre n'est pas contenu dans la méthode validmove */
@@ -149,8 +146,6 @@ public class TicTacToe extends AbstractGame2JSansHasard{ /* La  classe TicTacToe
 						return -1;
 					}if (this.verif2Cases(p)==true) {
 						return 2;
-					}if(this.verif2Cases(this.p2)==true) {
-						return 0;
 					}else {
 						return 1;
 					}
@@ -166,8 +161,6 @@ public class TicTacToe extends AbstractGame2JSansHasard{ /* La  classe TicTacToe
 						return -1;
 					}if (this.verif2Cases(p)==true) {
 						return 2;
-					}if(this.verif2Cases(this.p1)==true) {
-						return 0;
 					}else {
 						return 1;
 					}
