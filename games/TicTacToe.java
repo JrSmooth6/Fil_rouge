@@ -103,10 +103,77 @@ public class TicTacToe extends AbstractGame2JSansHasard{ /* La  classe TicTacToe
     public Boolean isOver(){
         return (validMoves().size() == 0 || getWinner() != null);
     }
-
-	@Override
-	public int getHeuristicValue(GamePlayer p) {
-		// TODO Auto-generated method stub
-		return 0;
+ /*Calcul de l'heuristique */
+	public boolean verif2CasesDiag(GamePlayer p) {
+		if(this.grid[1][1]==p) {
+			if(this.grid[0][0]== p || this.grid[0][2]== p || this.grid[2][2]== p || this.grid[0][2]== p) {
+				return true;
+			}
+		}
+		return false;
 	}
+	public boolean verif2CasesVertical(GamePlayer p) {
+		for(int i =0;i<2;i++) {
+			for(int j = 0 ; j<this.grid[i].length;j++) {
+				if(this.grid[i][j]==p && this.grid[i+1][j]==p) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	public boolean verif2CasesHorizontal(GamePlayer p) {
+		for (int i = 0 ; i<this.grid.length;i++) {
+			for (int j=0;j<2;j++) {
+				if(this.grid[i][j]==p && this.grid[i][j+1]==p) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	public boolean verif2Cases(GamePlayer p) {
+		if(this.verif2CasesDiag(p)==true || this.verif2CasesHorizontal(p)==true || this.verif2CasesVertical(p)==true) {
+			return true;
+		}
+		return false;
+	}
+	public int getHeuristicValue(GamePlayer p) {
+			if (p==this.p1) {
+				if (this.getWinner()==p) {
+					return 3;
+				}else {
+					if(this.getWinner()==null) {
+						return 3;
+					}if(this.getWinner()==this.p2) {
+						return -1;
+					}if (this.verif2Cases(p)==true) {
+						return 2;
+					}if(this.verif2Cases(this.p2)==true) {
+						return 0;
+					}else {
+						return 1;
+					}
+				}
+			}
+			if (p==this.p2) {
+				if (this.getWinner()==p) {
+					return 3;
+				}else {
+					if(this.getWinner()==null) {
+						return 3;
+					}if(this.getWinner()==this.p1) {
+						return -1;
+					}if (this.verif2Cases(p)==true) {
+						return 2;
+					}if(this.verif2Cases(this.p1)==true) {
+						return 0;
+					}else {
+						return 1;
+					}
+				}
+			}
+			return 1;
+	}
+	/* Fin du calcul de l'heuristique */
 }
