@@ -11,7 +11,7 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
 		super(p1,p2);
 		this.grid = new  GamePlayer [6][7];
 	}
-	
+	/*Fonction qui va "imiter la gravité" */
 	public int getProfondeur(int x) {
 		if((grid[0][x]==null) && (grid[1][x]==null) && (grid[2][x]==null) && (grid[3][x]==null) && (grid[4][x]==null) && (grid[5][x]==null)) {
 			return 5;
@@ -150,11 +150,124 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
         res.p_courant = super.p_courant;
         return res;
     }
+    
+    /*Calcul de l'heuristique*/
+    
 
-	@Override
+    public boolean verifCasesHorizontal(GamePlayer p, int nb) {
+    	for (int i=0; i<this.grid.length;i++) {
+    		for(int j = 0; j<this.grid[i].length-(nb-1);j++) {
+    			if(nb==2) {
+    				if(grid[i][j]==p && this.grid[i][j+1]==p) {
+    					return true;
+    				}
+    			}else {
+    				if(grid[i][j]==p && this.grid[i][j+1]==p && this.grid[i][j+2]==p) {
+    					return true;
+    				}
+    			}
+    		}
+    	}
+    	return false;
+    }
+    public boolean verifCasesVertical(GamePlayer p, int nb ) {
+    	for(int i = 0;i<this.grid.length -(nb-1);i++) {
+    		for(int j = 0; j<this.grid[i].length;j++) {
+    			if (nb==2) {
+    				if(this.grid[i][j]==p && this.grid[i+1][j]==p) {
+    					return true;
+    				}else {
+        				if(this.grid[i][j]==p && this.grid[i+1][j]==p && this.grid[i+2][j]==p) {
+        					return true;
+        				}
+    				}
+    			}
+    		}
+    	}
+    	return false;
+    }
+    public boolean verifCasesDiagonalesGD(GamePlayer p, int nb) {
+    	for (int i = 0;i<this.grid.length-(nb-1);i++) {
+    		for (int j = 0;j<this.grid[i].length-(nb-1);j++) {
+    			if(nb==2) {
+    				if(this.grid[i][j]==p &&this.grid[i+1][j+1]==p ) {
+    					return true;
+    				}else {
+    					if(this.grid[i][j]==p &&this.grid[i+1][j+1]==p &&this.grid[i+2][j+2]==p ) {
+        					return true;
+        				}
+    				}
+    			}
+    		}
+    	}
+    return false;
+    }
+    public boolean verifCasesDiagonalesDG(GamePlayer p, int nb) {
+    	for (int i = 5;i>0+(nb-1);i--){
+    		for (int j= 6;j>this.grid[i].length-(nb-1);j--) {
+    			if(nb == 2) {
+    				if(this.grid[i][j]==p && this.grid[i-1][j-1]==p) {
+    					return true;
+    				}else {
+        				if(this.grid[i][j]==p && this.grid[i-1][j-1]==p && this.grid[i-2][j-2]==p) {
+        					return true;
+        				}
+    				}
+    			}
+    		}
+    	}
+    	return false;
+    }
+    public boolean verif2Cases(GamePlayer p) {
+    	if(this.verifCasesDiagonalesDG(p, 2)==true || this.verifCasesDiagonalesGD(p, 2)== true || this.verifCasesHorizontal(p,2)==true || this.verifCasesVertical(p,2)==true) {
+    		return true;
+    	}else {
+    		return false ;
+    	}
+    }
+    public boolean verif3Cases(GamePlayer p) {
+    	if(this.verifCasesDiagonalesDG(p, 3)==true || this.verifCasesDiagonalesGD(p, 3)== true || this.verifCasesHorizontal(p,3)==true || this.verifCasesVertical(p,3)==true) {
+    		return true;
+    	}else {
+    		return false ;
+    	}
+    }
 	public int getHeuristicValue(GamePlayer p) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (p == this.p1) {
+			if(this.getWinner() == p) {
+				return 4;
+			}else {
+				if(this.getWinner()==this.p2) {
+					return 0;
+				}else if(this.getWinner()==null) {
+					return 4;
+				}else if(this.verif2Cases(p)==true) {
+					if(this.verif3Cases(p)==true) {
+						return 3;
+					}else {
+						return 2;
+					}
+				}
+			}
+		}
+		if (p == this.p2) {
+			if(this.getWinner() == p) {
+				return 4;
+			}else {
+				if(this.getWinner()==this.p1) {
+					return 0;
+				}else if(this.getWinner()==null) {
+					return 4;
+				}else if(this.verif2Cases(p)==true) {
+					if(this.verif3Cases(p)==true) {
+						return 3;
+					}else {
+						return 2;
+					}
+				}
+			}
+		}
+		return 1;
 	}
 
 }

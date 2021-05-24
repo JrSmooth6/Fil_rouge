@@ -12,7 +12,7 @@ public class MinMaxPlayer implements GamePlayer {
 	public int minMax(AbstractGame game, int profondeur, GamePlayer p) {
 		if (profondeur ==0 || game.isOver()==true) {
 			return game.getHeuristicValue(p);
-		}if(game.p_courant==p) {
+		}else if(game.p_courant.equals(p)) {
 			int valeur = -10000;
 			for (int coup : game.validMoves()) {
 				AbstractGame situation = game.getCopy();
@@ -21,12 +21,12 @@ public class MinMaxPlayer implements GamePlayer {
 				return valeur;
 			}
 		}
-		else {
+		else if (game.p_courant.equals(p)==false){
 				int valeur = 10000;
 				for (int coup: game.validMoves()) {
 					AbstractGame situation = game.getCopy();
 					situation.jouerUnCoup(coup);
-					valeur = Math.min(valeur,minMax(situation,profondeur-1,p));
+					valeur = Math.min(valeur,minMax(situation,profondeur-1,game.p_courant));
 					return valeur;
 				}
 			}
