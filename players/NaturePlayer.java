@@ -14,7 +14,7 @@ public class NaturePlayer implements GamePlayer {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	public float calculEsperance(HashMap<Integer,Float> map) {
+	static float calculEsperance(HashMap<Integer,Float> map) {
 		float esperance = 0;
 		for(int i :map.keySet()) {
 			esperance+=i*map.get(i);

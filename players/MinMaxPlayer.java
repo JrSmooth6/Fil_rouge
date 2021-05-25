@@ -19,7 +19,7 @@ public class MinMaxPlayer implements GamePlayer {
 			for (int coup : game.validMoves()) {
 				AbstractGame situation = game.getCopy();
 				situation.jouerUnCoup(coup);
-				valeur = Math.max(valeur, minMax(situation,profondeur-1,situation.p_courant));
+				valeur = Math.max(valeur, minMax(situation,profondeur-1,p));
 			}
 			return valeur;
 		}
@@ -28,7 +28,7 @@ public class MinMaxPlayer implements GamePlayer {
 				for (int coup: game.validMoves()) {
 					AbstractGame situation = game.getCopy();
 					situation.jouerUnCoup(coup);
-					valeur = Math.min(valeur,minMax(situation,profondeur-1,situation.p_courant));
+					valeur = Math.min(valeur,minMax(situation,profondeur-1,p));
 				}
 				return valeur;
 			}

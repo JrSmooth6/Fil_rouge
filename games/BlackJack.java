@@ -96,7 +96,7 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 	}
 
 
-	public AbstractGame getCopy() {
+	public BlackJack getCopy() {
 		BlackJack copy = new BlackJack(this.p1,this.p2,this.deck,this.totalj1,this.totalj2,this.statutJ1,this.statutJ2);
 		return copy;
 	}
@@ -135,7 +135,30 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 	}
 
 
-	public HashMap<Integer, Float> getProba(GamePlayer naturePlayer2) {
-		return this.deck.getProbaDeck();
+	public HashMap<Integer,Float>  getProba(GamePlayer p) {
+		HashMap<Integer,Float> tableProbaBJ = new HashMap<>();
+		for(int i = 1;i<14;i++) {
+			int compteur = 0;
+			for(int j = 0;j<this.deck.deck.size();j++) {
+				if (this.deck.deck.get(j).valeur == i) {
+					compteur +=1;
+				}
+				tableProbaBJ.put(i, ((float)compteur/this.deck.deck.size()));
+			}
+		}
+		float probaTete =0;
+		for(int i: tableProbaBJ.keySet()) {
+			if(i<=10) {
+				probaTete += tableProbaBJ.get(i);
+				tableProbaBJ.remove(i);
+			}
+			tableProbaBJ.put(10, probaTete);
+		}
+		return tableProbaBJ;
+		
 	}
+
+
+
+
 }
