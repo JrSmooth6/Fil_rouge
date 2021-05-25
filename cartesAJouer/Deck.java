@@ -36,7 +36,7 @@ public class Deck {
 	public ArrayList<Carte> cartesRestantes(){
 		return this.deck;
 	}
-	public HashMap<Integer,Float>  getProba() {
+	public HashMap<Integer,Float>  getProbaDeck() {
 		HashMap<Integer,Float> tableProbaBJ = new HashMap<>();
 		for(int i = 1;i<14;i++) {
 			int compteur = 0;

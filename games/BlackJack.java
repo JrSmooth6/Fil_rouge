@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import cartesAJouer.*;
 import players.*;
-public class BlackJack extends AbstractGame2JSansHasard{
+public class BlackJack extends AbstractGame2JAvecHasard{
 	
 	public Deck deck;
 	public int totalj1;
@@ -96,7 +96,7 @@ public class BlackJack extends AbstractGame2JSansHasard{
 	}
 
 
-	public AbstractGame2JSansHasard getCopy() {
+	public AbstractGame getCopy() {
 		BlackJack copy = new BlackJack(this.p1,this.p2,this.deck,this.totalj1,this.totalj2,this.statutJ1,this.statutJ2);
 		return copy;
 	}
@@ -135,9 +135,7 @@ public class BlackJack extends AbstractGame2JSansHasard{
 	}
 
 
-	@Override
 	public HashMap<Integer, Float> getProba(GamePlayer naturePlayer2) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.deck.getProbaDeck();
 	}
 }

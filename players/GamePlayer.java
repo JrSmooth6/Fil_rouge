@@ -8,8 +8,6 @@ public interface GamePlayer{
 
 	
 
-	int total = 0;
-	GamePlayer p = null;
 
 	public int chooseMove(AbstractGame game);
 

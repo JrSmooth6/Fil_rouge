@@ -5,7 +5,7 @@ import java.util.HashMap;
 import games.AbstractGame;
 
 public class NaturePlayer implements GamePlayer {
-	GamePlayer player;
+	public GamePlayer player;
 	public NaturePlayer(GamePlayer player){
 		this.player = player;
 	}

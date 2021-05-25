@@ -1,5 +1,6 @@
 package games;
 
+import java.util.HashMap;
 import java.util.List;
 
 import players.GamePlayer;
@@ -35,7 +36,7 @@ public abstract class AbstractGame {
     public abstract void jouerUnCoup(int nb);
 
 
-	public abstract Object getProba(GamePlayer naturePlayer2);
+	public abstract HashMap<Integer,Float> getProba(GamePlayer naturePlayer2);
 
 
 }

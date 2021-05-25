@@ -1,6 +1,4 @@
 package games;
-
-
 import players.GamePlayer;
 import players.NaturePlayer;
 
