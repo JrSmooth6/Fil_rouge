@@ -1,6 +1,8 @@
 package players;
+import java.util.HashMap;
+
 import games.*;
-public class ExpectedMinMaxPlayer {
+public class ExpectedMinMaxPlayer implements GamePlayer{
 	public ExpectedMinMaxPlayer() {
 		
 	}
@@ -32,9 +34,19 @@ public class ExpectedMinMaxPlayer {
 			   for(int coup : game.validMoves()) {
 				   AbstractGame situation2 = game.getCopy();
 				   situation2.jouerUnCoup(coup);
-				   alpha += (situation2.naturePlayer.calculEsperance(situation2.getProba(game.naturePlayer.player)))*this.expectiMinMax(situation2, profondeur-1);
+				   alpha += (situation2.naturePlayer.calculEsperance(situation2.getProba(GamePlayer.player)))*this.expectiMinMax(situation2, profondeur-1);
 			   }
 			   return alpha;
 		   }
 	   }
+	@Override
+	public int chooseMove(AbstractGame game) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public float calculEsperance(HashMap<Integer, Float> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
