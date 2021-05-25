@@ -2,6 +2,7 @@ package games;
 import players.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Nim extends AbstractGame2JSansHasard{  /* La classeNim est une extension AbstractGame (classe abstraite)*/
     int taille_ini; /* Cette variable correpond aux nombres d'allumettes au debut du jeu*/
@@ -69,9 +70,22 @@ public class Nim extends AbstractGame2JSansHasard{  /* La classeNim est une exte
         return (validMoves().size() == 0 || getWinner() != null);
     }
 
-	@Override
+	
 	public int getHeuristicValue(GamePlayer p) {
+			if(this.taille_courant==1) {
+				return 0;
+			}if(this.taille_courant==2) {
+				return 3;
+			}if(this.taille_courant==this.nb_max+1) {
+				return 3;
+			}else {
+				return 1;
+			}
+	}
+
+	@Override
+	public HashMap<Integer, Float> getProba(GamePlayer naturePlayer2) {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 }

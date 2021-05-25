@@ -1,12 +1,13 @@
 package games;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 import players.GamePlayer;
 
-public class BatailleNavale extends AbstractGame {
+public class BatailleNavale extends AbstractGame2JAvecHasard {
 		int[][]gridj1;
 		int[][]gridj2;
 	public BatailleNavale(GamePlayer p1, GamePlayer p2,int[][]gridj1,int[][]gridj2) {
@@ -119,14 +120,85 @@ public class BatailleNavale extends AbstractGame {
 		
 	}
 
-	public AbstractGame getCopy() {
-		BatailleNavale bn = this ;
-		return bn;
+    public AbstractGame getCopy(){//Methode qui copie la grille du jeu en profondeur pour prévoir les meilleurs coups avec MinMaxPlayer
+		int[][]grid1=new int[5][5];
+		int[][]grid2=new int[5][5];
+    	for (int i=0; i<this.gridj1.length ; i++){
+            for (int j=0; j<this.gridj1[i].length ; j++){
+                    grid1[i][j]=this.gridj1[i][j];
+                    grid2[i][j]=this.gridj2[i][j];
+            }
+    	}
+    	
+    	
+    	BatailleNavale res = new BatailleNavale(super.p1,super.p2,grid1,grid2);
+    	return res;
+    }
+
+	public int compteurTouche(GamePlayer p,int nb) {
+		int compteur =0;
+			for(int i =0;i<this.gridj1.length;i++) {
+				for(int j= 0; j<this.gridj1[i].length;j++) {
+					if(p==this.p1) {
+						if(this.gridj1[i][j]==nb) {
+							compteur++;
+						}
+					}if(p==this.p2) {
+						if(this.gridj2[i][j]==nb){
+							compteur++;
+						}
+					}
+				}
+			}
+			return compteur;
+		
 	}
-	@Override
 	public int getHeuristicValue(GamePlayer p) {
-		// TODO Auto-generated method stub
+		if(p==this.p1) {
+			if(this.compteurTouche(p,1)==0) {
+				return 0;
+			}if(this.compteurTouche(p, 1)==1) {
+				return 1;
+			}if(this.compteurTouche(p, 1)==2){
+				return 2;
+			}if(this.compteurTouche(this.p2, 2)==1) {
+				return 4;
+			}if(this.compteurTouche(this.p2, 2)==2) {
+				return 3;
+			}
+		}
+		if(p==this.p2) {
+			if(this.compteurTouche(p,1)==0) {
+				return 0;
+			}if(this.compteurTouche(p, 1)==1) {
+				return 1;
+			}if(this.compteurTouche(p, 1)==2){
+				return 2;
+			}if(this.compteurTouche(this.p1, 2)==1) {
+				return 4;
+			}if(this.compteurTouche(this.p1, 2)==2) {
+				return 3;
+			}
+		}
 		return 0;
+	}
+	public HashMap<Integer,Float> getProba(GamePlayer p ){
+		HashMap<Integer,Float>map = new HashMap<>();
+		if(p==this.p1) {
+			int cle1 = this.compteurTouche(this.p2, 2);
+			int bateau = 6-cle1;
+			int eau = 19;
+			map.put(0, (float) (eau/25));
+			map.put(1,(float) (bateau/25));
+		}
+		if(p==this.p2) {
+			int cle1 = this.compteurTouche(this.p1, 2);
+			int bateau = 6-cle1;
+			int eau = 19;
+			map.put(0, (float) (eau/25));
+			map.put(1,(float) (bateau/25));
+		}
+		return map;
 	}
 	@Override
 	public void jouerUnCoup(int nb) {

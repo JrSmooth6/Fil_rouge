@@ -1,6 +1,8 @@
 package cartesAJouer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 public class Deck {
 	public ArrayList<Carte> deck;
 	public Deck(ArrayList<Carte>deck) {
@@ -31,11 +33,30 @@ public class Deck {
 			System.out.println(this.deck.get(i).valeur + " "+ this.deck.get(i).forme);
 		}
 	}
-	public static void main(String[] args){
-		ArrayList<Carte> deck = new ArrayList<Carte>();
-		Deck tas = new Deck(deck);
-		tas.createDeck();
-		tas.melangeDeck();
-		tas.pioche();
+	public ArrayList<Carte> cartesRestantes(){
+		return this.deck;
 	}
+	public HashMap<Integer,Float>  getProba() {
+		HashMap<Integer,Float> tableProbaBJ = new HashMap<>();
+		for(int i = 1;i<14;i++) {
+			int compteur = 0;
+			for(int j = 0;j<this.deck.size();j++) {
+				if (this.deck.get(j).valeur == i) {
+					compteur +=1;
+				}
+				tableProbaBJ.put(i,(float) (compteur/this.deck.size()));
+			}
+		}
+		float probaTete =0;
+		for(int i: tableProbaBJ.keySet()) {
+			if(i<=10) {
+				probaTete += tableProbaBJ.get(i);
+				tableProbaBJ.remove(i);
+			}
+			tableProbaBJ.put(10, probaTete);
+		}
+		return tableProbaBJ;
+		
+	}
+
 }

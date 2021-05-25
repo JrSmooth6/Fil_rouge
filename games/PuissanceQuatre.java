@@ -1,6 +1,7 @@
 package games;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import players.GamePlayer;
@@ -268,6 +269,11 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
 			}
 		}
 		return 1;
+	}
+	@Override
+	public HashMap<Integer, Float> getProba(GamePlayer naturePlayer2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -3,17 +3,19 @@ package games;
 import java.util.List;
 
 import players.GamePlayer;
+import players.NaturePlayer;
 
 public abstract class AbstractGame {
     public GamePlayer p1;
 	public GamePlayer p2;
     public GamePlayer p_courant;
-
+    public GamePlayer naturePlayer;
     //Constructeur de la classe
     public AbstractGame(GamePlayer p1, GamePlayer p2){
         this.p1 = p1;
         this.p_courant = p1;
         this.p2 = p2;
+        this.naturePlayer = new NaturePlayer(p1);
     }
     
     
@@ -31,6 +33,9 @@ public abstract class AbstractGame {
     public abstract void execUnCoup(int nb);
     public abstract int getHeuristicValue(GamePlayer p);
     public abstract void jouerUnCoup(int nb);
+
+
+	public abstract Object getProba(GamePlayer naturePlayer2);
 
 
 }

@@ -1,5 +1,6 @@
 package players;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import cartesAJouer.Carte;
 import cartesAJouer.Deck;
@@ -53,6 +54,12 @@ public class BataillePlayer implements GamePlayer{
 
 	@Override
 	public int chooseMove(AbstractGame game) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float calculEsperance(HashMap<Integer, Float> map) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -1,5 +1,6 @@
 package games;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import cartesAJouer.*;
 import players.*;
@@ -95,16 +96,48 @@ public class BlackJack extends AbstractGame2JSansHasard{
 	}
 
 
-	@Override
 	public AbstractGame2JSansHasard getCopy() {
-		// TODO Auto-generated method stub
-		return null;
+		BlackJack copy = new BlackJack(this.p1,this.p2,this.deck,this.totalj1,this.totalj2,this.statutJ1,this.statutJ2);
+		return copy;
+	}
+	public int getHeuristicValue(GamePlayer p) {
+		if(p==this.p1) {
+			if(this.totalj1>21) {
+				return 0;
+			}else if(this.totalj1<21) {
+				if(this.totalj1>18 && this.totalj2<this.totalj1) {
+					return 3;
+				}if(this.totalj2>21) {
+					return 4;
+				}if(this.totalj1<18 && this.totalj2<this.totalj1) {
+					return 2;
+				}if(this.totalj1<18 && this.totalj2>this.totalj1) {
+					return 1;
+				}
+			}
+		}
+		if(p==this.p2) {
+			if(this.totalj2>21) {
+				return 0;
+			}else if(this.totalj2<21) {
+				if(this.totalj2>18 && this.totalj1<this.totalj2) {
+					return 3;
+				}if(this.totalj2>21) {
+					return 4;
+				}if(this.totalj2<18 && this.totalj1<this.totalj2) {
+					return 2;
+				}if(this.totalj2<18 && this.totalj1>this.totalj2) {
+					return 1;
+				}
+			}
+		}
+		return 0;
 	}
 
 
 	@Override
-	public int getHeuristicValue(GamePlayer p) {
+	public HashMap<Integer, Float> getProba(GamePlayer naturePlayer2) {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 }
