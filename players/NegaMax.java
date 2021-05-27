@@ -1,8 +1,6 @@
 package players;
 import games.*;
 
-import java.util.HashMap;
-import java.util.Random;
 
 //Classe du joueur negaMax, le joueur automatique et relativement optimisé
 public class NegaMax implements GamePlayer{
@@ -63,11 +61,7 @@ public class NegaMax implements GamePlayer{
         return meilleurCoup;
     }
 
-	@Override
-	public float calculEsperance(HashMap<Integer, Float> map) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 
 

@@ -1,7 +1,6 @@
 package players;
 import games.*;
 
-import java.util.HashMap;
 import java.util.Random;
 
 //Classe du joueur random, un joueur automatique et comme son nom l'indique, qui joue de manière aléatoire
@@ -24,9 +23,5 @@ public class RandomPlayer implements GamePlayer{
         return nb;
     }
 
-	@Override
-	public float calculEsperance(HashMap<Integer, Float> map) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 }

@@ -139,38 +139,35 @@ public class TicTacToe extends AbstractGame2JSansHasard{ /* La  classe TicTacToe
 		}
 		return false;
 	}
+
 	public int getHeuristicValue(GamePlayer p) {
 			if (p==this.p1) {
-				if (this.getWinner()==p) {
-					return 3;
-				}else {
-					if(this.getWinner()==null) {
-						return 3;
-					}if(this.getWinner()==this.p2) {
-						return -1;
-					}if (this.verif2Cases(p)==true) {
+				if (this.getWinner()==p2) {
+					return -1;
+				}else{
+					if(this.verif2Cases(p2)==true || this.verif2Cases(p)) {
 						return 2;
-					}else {
+					}else if(this.verif2Cases(p2)|| this.verif2Cases(p)==false) {
 						return 1;
+					}else if(this.getWinner()==p){
+						return 3;
 					}
 				}
 			}
 			if (p==this.p2) {
-				if (this.getWinner()==p) {
-					return 3;
-				}else {
-					if(this.getWinner()==null) {
-						return 3;
-					}if(this.getWinner()==this.p1) {
-						return -1;
-					}if (this.verif2Cases(p)==true) {
+				if (this.getWinner()==p1) {
+					return -1;
+				}else{
+					if(this.verif2Cases(p1)==true || this.verif2Cases(p)) {
 						return 2;
-					}else {
+					}else if(this.verif2Cases(p1)|| this.verif2Cases(p)==false) {
 						return 1;
+					}else if(this.getWinner()==p){
+						return 3;
 					}
 				}
 			}
-			return 1;
+			return 0;
 	}
 	/* Fin du calcul de l'heuristique */
 
@@ -179,4 +176,5 @@ public class TicTacToe extends AbstractGame2JSansHasard{ /* La  classe TicTacToe
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

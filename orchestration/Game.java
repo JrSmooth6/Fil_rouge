@@ -76,7 +76,6 @@ public class Game{
 			GamePlayer p2 = this.choixJoueur();
 			PuissanceQuatre pq = new PuissanceQuatre(p1,p2);
 			capichef.playGame(pq);
-
 		}
 
 		
@@ -96,9 +95,12 @@ public class Game{
 		}else if(type.compareTo("random")==0) {
 			GamePlayer joueur = new RandomPlayer(0);
 			return joueur;
+		}else if(type.compareTo("minmax")==0) {
+			GamePlayer joueur = new MinMaxPlayer();
+			return joueur;
 		}
 		else {
-			throw new IllegalArgumentException("Le nombre max d'alumettes à enlever n'est pas valide.");
+			throw new IllegalArgumentException("");
 		}
 		
 	}

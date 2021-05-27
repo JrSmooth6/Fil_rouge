@@ -1,7 +1,6 @@
 package players;
 import games.*;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 //Classe utilisée quand joue un joueur humain(classe qui implémente l'interface GamePlayer)
@@ -41,16 +40,11 @@ public class Human implements GamePlayer{
             System.out.println(game.getPlayerCourant().toString() + ", ton nombre n'est pas valide, choisis en un autre :");
             nb = scanner.nextInt();
         }
-
 	//On retourne le coup joué
         return nb;
     }
 
-	@Override
-	public float calculEsperance(HashMap<Integer, Float>map) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 
 

@@ -1,11 +1,8 @@
 package players;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import cartesAJouer.Carte;
 import cartesAJouer.Deck;
 import games.AbstractGame;
-import games.AbstractGame2JSansHasard;
 public class BataillePlayer implements GamePlayer{
 	public String name;
 	public Deck deck;
@@ -58,10 +55,6 @@ public class BataillePlayer implements GamePlayer{
 		return 0;
 	}
 
-	@Override
-	public float calculEsperance(HashMap<Integer, Float> map) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 }
 
