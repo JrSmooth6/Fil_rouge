@@ -16,7 +16,7 @@ public abstract class AbstractGame {
         this.p1 = p1;
         this.p_courant = p1;
         this.p2 = p2;
-        this.naturePlayer = new NaturePlayer(p1);
+        this.naturePlayer = new NaturePlayer();
     }
     
     

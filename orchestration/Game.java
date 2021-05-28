@@ -57,8 +57,8 @@ public class Game{
 			Deck tas = new Deck(deck);
 			tas.createDeck();
 			tas.melangeDeck();
-			BlackJack bj = new BlackJack(p1,p2,tas,0,0,true,true);
-			capichef.playGame(bj);
+			//BlackJack bj = new BlackJack(p1,p2,tas,0,0,true,true);
+			//capichef.playGame(bj);
 		}
 		else if (jeu ==5) {
 			GamePlayer p1 =new Human("h",0);
@@ -76,6 +76,12 @@ public class Game{
 			GamePlayer p2 = this.choixJoueur();
 			PuissanceQuatre pq = new PuissanceQuatre(p1,p2);
 			capichef.playGame(pq);
+		}else if(jeu==7) {
+			GamePlayer p1 = new Human("h",0);
+			GamePlayer p2 = new Human("j",0);
+			PileOuFace pf = new PileOuFace(p1,p2,0);
+			pf.init();
+			capichef.playGame(pf);
 		}
 
 		
@@ -109,7 +115,7 @@ public class Game{
 		System.out.println("A quel jeu souhaiter vous jouer ? ");
 		System.out.println("1 : Bataille ; 2 : Morpion ; 3 : Nim ; 4 : BlackJack ; 5 : Bataille Navale  ; 6 : Puissance 4");
 		int jeu = scanner.nextInt();
-		while(jeu>6) {
+		while(jeu>7) {
 			System.out.println("Veuillez selectionnez un jeu");
 			jeu = scanner.nextInt();
 		}

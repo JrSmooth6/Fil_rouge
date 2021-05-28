@@ -9,8 +9,8 @@ public class Human implements GamePlayer{
     int total;
 
     //Constructeur de la classe
-    public Human(String nom,int total){
-        this.name = nom;
+    public Human(String name,int total){
+        this.name = name;
         this.total = total;
     }
 
