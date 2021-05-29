@@ -34,7 +34,7 @@ public class ExpectedMinMaxPlayer implements GamePlayer{
 			   for(int coup : game.validMoves()) {
 				   AbstractGame situation2 = game.getCopy();
 				   situation2.jouerUnCoup(coup);
-				   alpha += (situation2.get)*this.expectiMinMax(situation2, profondeur-1);
+				   alpha += (situation2.getEsperance(situation2.getProba(situation2.player_precedent)))*this.expectiMinMax(situation2, profondeur-1);
 			   }
 			   return alpha;
 		   }

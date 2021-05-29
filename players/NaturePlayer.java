@@ -9,7 +9,6 @@ public class NaturePlayer implements GamePlayer {
 	}
 	@Override
 	public int chooseMove(AbstractGame game) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

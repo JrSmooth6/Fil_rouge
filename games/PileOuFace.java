@@ -181,18 +181,9 @@ public class PileOuFace extends AbstractGame2JAvecHasard{
 			}if(nb==1) {
 				this.p_courant = this.naturePlayer;
 				this.player_precedent=this.p1;
-				String resultat = this.lancerPiece();
-				System.out.println(resultat);
-				if(resultat =="Pile !") {
-					this.cagnotte +=2;
-					this.p_courant=this.p1;
-				}if(resultat == "Face !") {
-					this.cagnotte = 0;
-					this.p_courant = this.p2;
-				}
 			}
 		}
-		else if(this.p_courant == this.p2) {
+		 if(this.p_courant == this.p2) {
 			if(nb==0){
 				this.ajoutCagnotte(p2);
 				this.cagnotte = 0;
@@ -200,23 +191,32 @@ public class PileOuFace extends AbstractGame2JAvecHasard{
 			}if(nb==1) {
 				this.p_courant = this.naturePlayer;
 				this.player_precedent=this.p2;
-				String resultat = this.lancerPiece();
-				System.out.println(resultat);
-				if(resultat =="Pile !") {
-					this.cagnotte +=2;
+			}
+		}
+		 if(this.p_courant==this.naturePlayer) {
+			String resultat =this.lancerPiece();
+			System.out.println(resultat);
+			if(resultat =="Pile !") {
+				this.cagnotte+=2;
+				this.p_courant=this.player_precedent;
+			}if(resultat =="Face !") {
+				this.cagnotte =0;
+				if(this.player_precedent ==this.p1) {
 					this.p_courant = this.p2;
-				}if(resultat == "Face !") {
-					this.cagnotte = 0;
-					this.p_courant = this.p1;
+					
+				}else{
+					this.p_courant=this.p1;
+					System.out.println(this.getEsperance(this.getProba(this.p1)));
 				}
 			}
 		}
 	}
-
-	@Override
 	public HashMap<Integer, Float> getProba(GamePlayer naturePlayer2) {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	public float getEsperance(HashMap<Integer, Float> map) {
+
+		return this.cagnotte/2;
 	}
 
 }

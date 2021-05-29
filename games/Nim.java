@@ -88,4 +88,10 @@ public class Nim extends AbstractGame2JSansHasard{  /* La classeNim est une exte
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public float getEsperance(HashMap<Integer, Float> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

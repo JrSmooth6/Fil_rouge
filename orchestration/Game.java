@@ -57,8 +57,11 @@ public class Game{
 			Deck tas = new Deck(deck);
 			tas.createDeck();
 			tas.melangeDeck();
-			//BlackJack bj = new BlackJack(p1,p2,tas,0,0,true,true);
-			//capichef.playGame(bj);
+			ArrayList<Integer>liste1 = new ArrayList<Integer>();
+			ArrayList<Boolean>liste2 = new ArrayList<Boolean>();
+			BlackJack bj = new BlackJack(p1,p2,tas,liste1,liste2);
+			bj.init();
+			capichef.playGame(bj);
 		}
 		else if (jeu ==5) {
 			GamePlayer p1 =new Human("h",0);

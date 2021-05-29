@@ -16,7 +16,7 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 		this.ArrayListeTotals = ArrayListeTotals;
 		this.ArrayListeStatuts = ArrayListeStatuts;
 		this.deck = deck;
-		this.player_precedent = null;
+		this.player_precedent = this.p1;
 		this.naturePlayer = new NaturePlayer();
 	}
 
@@ -26,30 +26,6 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 		this.ArrayListeStatuts.add(true);
 		this.ArrayListeStatuts.add(true);
 	}
-	public void execUnCoup(int nb) {
-		if(this.p_courant ==p1) {
-			if(this.ArrayListeStatuts.get(0) ==true) {
-				if(nb ==1) {
-					ArrayListeTotals.set(0,ArrayListeTotals.get(0) + this.deck.pioche().valeur);
-					System.out.println(" total J1 : " + this.ArrayListeTotals.get(0));
-				}else if(nb==0){
-					this.ArrayListeStatuts.set(0,false);
-				}
-			}
-		}
-		else if (this.p_courant == p2) {
-			if (this.ArrayListeStatuts.get(1)==true){
-				if(nb == 1) {
-					ArrayListeTotals.set(1,ArrayListeTotals.get(1) + this.deck.pioche().valeur);
-					System.out.println(" total J2 : " + this.ArrayListeTotals.get(1));
-				}
-				else if(nb==0) {
-					this.ArrayListeStatuts.set(1,false);
-				}
-			}
-		}
-	}
-
 
 
 	public ArrayList<Integer> validMoves() {
@@ -61,17 +37,11 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 
 
 	public String situationToString() {
-		String str = "";
-		if(this.p_courant == p1) {
-			 str = " total J1 : " + this.ArrayListeTotals.get(0);	
-		}else {
-			 str = " total J2 : " + this.ArrayListeTotals.get(1);
-			
-		}
+		String str = " total J1 : " + this.ArrayListeTotals.get(0)+ " total J2 : " + this.ArrayListeTotals.get(1);	
 		return str;
+			
+
 	}
-
-
 	@Override
 	public String moveToString(Integer move) {
 		// TODO Auto-generated method stub
@@ -138,8 +108,6 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 		}
 		return 0;
 	}
-
-
 	public HashMap<Integer,Float>  getProba(GamePlayer p) {
 		HashMap<Integer,Float> tableProbaBJ = new HashMap<>();
 		for(int i = 1;i<14;i++) {
@@ -159,9 +127,9 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 			}
 			tableProbaBJ.put(10, probaTete);
 		}
-		return tableProbaBJ;
-		
+		return tableProbaBJ;	
 	}
+	
 	public float calculEsperance(GamePlayer p) {
 		float esperance = 0;
 		HashMap<Integer,Float> map = this.getProba(p);
@@ -170,11 +138,59 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 		}
 		return esperance;
 	}
+	public void jouerUnCoup(int nb) {
+		System.out.println(this.p_courant);
+		if(this.p_courant == this.p1) {
+			if(this.ArrayListeStatuts.get(0)==true) {
+				if(nb==0){
+					this.ArrayListeStatuts.set(0, false);
+					this.p_courant = this.p2;
+				}if(nb==1) {
+					this.p_courant = this.naturePlayer;
+					this.player_precedent=this.p1;
+				}
+			}else {
+				this.p_courant = this.p2;
+			}
+		}		
+		if(this.p_courant == this.p2) {
+			if(this.ArrayListeStatuts.get(1)==true) {
+				if(nb==0){
+					this.ArrayListeStatuts.set(1, false);
+					this.p_courant = this.p1;
+				}if(nb==1) {
+					this.p_courant = this.naturePlayer;
+					this.player_precedent=this.p2;
+				}
+			}else {
+				this.p_courant = this.p1;
+			}
+		}
+		 if(this.p_courant==this.naturePlayer) {
+			 int valeur=this.deck.pioche().valeur;
+			 if(valeur>=10) {
+				 valeur = 10;
+			 }
+			 if(this.player_precedent==this.p1) {
+				 this.ArrayListeTotals.set(0, this.ArrayListeTotals.get(0)+valeur);
+				 this.p_courant = this.p2;
+			 }else{
+				 this.ArrayListeTotals.set(1, this.ArrayListeTotals.get(1)+valeur);
+				 this.p_courant = this.p1;
+			 }
+		}	
+	}
 
 	@Override
-	public void jouerUnCoup(int nb) {
+	public void execUnCoup(int nb) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public float getEsperance(HashMap<Integer, Float> map) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

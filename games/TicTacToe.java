@@ -177,4 +177,10 @@ public class TicTacToe extends AbstractGame2JSansHasard{ /* La  classe TicTacToe
 		return null;
 	}
 
+	@Override
+	public float getEsperance(HashMap<Integer, Float> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

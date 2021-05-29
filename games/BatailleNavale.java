@@ -205,5 +205,10 @@ public class BatailleNavale extends AbstractGame2JAvecHasard {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public float getEsperance(HashMap<Integer, Float> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
