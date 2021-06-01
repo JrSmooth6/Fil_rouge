@@ -18,9 +18,7 @@ public abstract class AbstractGame {
         this.p2 = p2;
         this.naturePlayer = new NaturePlayer();
     }
-    public GamePlayer getPlayerCourant(){
-        return this.p_courant;
-    }
+    public abstract GamePlayer getPlayerCourant();
     public abstract Boolean isOver ();
     public abstract List<Integer> validMoves();
     public abstract String situationToString();

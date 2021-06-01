@@ -51,8 +51,8 @@ public class Game{
 			
 		}
 		else if (jeu==4) {
-			GamePlayer p1 = new Human("H",0);
-			GamePlayer p2 = new Human("C",0);
+			GamePlayer p1 = new Human("H");
+			GamePlayer p2 = new Human("C");
 			ArrayList<Carte> deck = new ArrayList<Carte>();
 			Deck tas = new Deck(deck);
 			tas.createDeck();
@@ -64,8 +64,8 @@ public class Game{
 			capichef.playGame(bj);
 		}
 		else if (jeu ==5) {
-			GamePlayer p1 =new Human("h",0);
-			GamePlayer p2 = new Human("C",0);
+			GamePlayer p1 =new Human("h");
+			GamePlayer p2 = new Human("C");
 			int[][]gridj1=null;
 			int[][]gridj2=null;
 			BatailleNavale bn = new BatailleNavale(p1,p2,gridj1,gridj2);
@@ -80,8 +80,8 @@ public class Game{
 			PuissanceQuatre pq = new PuissanceQuatre(p1,p2);
 			capichef.playGame(pq);
 		}else if(jeu==7) {
-			GamePlayer p1 = new Human("h",0);
-			GamePlayer p2 = new Human("j",0);
+			GamePlayer p1 = new Human("h");
+			GamePlayer p2 = new Human("j");
 			PileOuFace pf = new PileOuFace(p1,p2,0);
 			pf.init();
 			capichef.playGame(pf);
@@ -96,10 +96,10 @@ public class Game{
 		if (type.compareTo("human")==0) {
 			System.out.println("Prenom ? ");
 			String nom = scanner.nextLine();
-			GamePlayer joueur = new Human(nom,0);
+			GamePlayer joueur = new Human(nom);
 			return joueur; 
 		}else if (type.compareTo("negamax")==0) {
-			GamePlayer joueur = new NegaMax(0);
+			GamePlayer joueur = new NegaMaxAlphaBeta();
 			return joueur;
 		}else if(type.compareTo("random")==0) {
 			GamePlayer joueur = new RandomPlayer(0);

@@ -10,5 +10,8 @@ public abstract class AbstractGame2JAvecHasard extends AbstractGame {
 		this.naturePlayer = new NaturePlayer();
 		this.p_courant = p1;
 	}
+    public GamePlayer getPlayerCourant(){
+        return this.p_courant;
+    }
 
 }

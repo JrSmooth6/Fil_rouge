@@ -1,23 +1,17 @@
 package players;
-import games.*;
 
+import games.AbstractGame;
+import games.AbstractGame2JSansHasard;
 
-//Classe du joueur negaMax, le joueur automatique et relativement optimisé
-public class NegaMax implements GamePlayer{
-    public NegaMax(){
-    }
-    //Méthode qui retourne le "nom" du joueur negaMax(Nombre aléatoire)
-    public String toString(){
-        return "Joueur optimisé #" + this.hashCode();
-    }
+public class NegaMaxAlphaBeta implements GamePlayer {
 
-    //Méthode qui retourne le meilleur coup possible en vue de la situation actuelle selon l'algorithme negamax
-    public int chooseMove(AbstractGame game){
-        return negaMax(game, game.p_courant);
-    }
-
-    //Méthode qui evalue la situation
-    public int evaluer(AbstractGame situation, GamePlayer p_courant){
+	public int chooseMove(AbstractGame game) {
+		return choixCoup(game,game.p_courant);
+	}
+	   public String toString(){
+	        return "Joueur optimisé #" + this.hashCode();
+	    }
+    public int negaMax(AbstractGame situation, GamePlayer p_courant,int profondeur,int alpha,int beta){
         if (situation.getWinner() == p_courant){
             return +1;
         }
@@ -33,14 +27,15 @@ public class NegaMax implements GamePlayer{
             for (int coup : situation.validMoves()) {
                 situation2 = (AbstractGame2JSansHasard) situation.getCopy();
                 situation2.jouerUnCoup(coup);
-                res = Math.max(res, -evaluer(situation2, situation2.p_courant));
+                res = Math.max(res, -negaMax(situation2, situation2.p_courant,profondeur-1,alpha,beta));
+                if(alpha>=beta) {
+                	return res;
+                }
             }
             return res;
         }
     }
-
-    //Algorithme negamax qui retourne en fonction de l'evaluation le meilleur coup possible
-    public int negaMax(AbstractGame situation, GamePlayer p_courant){
+    public int choixCoup(AbstractGame situation, GamePlayer p_courant){
         int valeur = -10;
         int meilleureValeur = -10;
         int meilleurCoup = -10;
@@ -49,7 +44,7 @@ public class NegaMax implements GamePlayer{
         for (int coup : situation.validMoves()) {
             situation2 =  situation.getCopy();
             situation2.jouerUnCoup(coup);
-            valeur = -evaluer(situation2, situation2.p_courant);
+            valeur = -negaMax(situation2, situation2.p_courant,1,-1000,1000);
             if (valeur > meilleureValeur){
                 meilleureValeur = valeur;
                 meilleurCoup = coup;
@@ -57,10 +52,5 @@ public class NegaMax implements GamePlayer{
         }
         return meilleurCoup;
     }
-
-
-
-
-
 
 }

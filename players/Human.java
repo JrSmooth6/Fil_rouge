@@ -6,12 +6,9 @@ import java.util.Scanner;
 //Classe utilisée quand joue un joueur humain(classe qui implémente l'interface GamePlayer)
 public class Human implements GamePlayer{
     String name;
-    int total;
-
     //Constructeur de la classe
-    public Human(String name,int total){
+    public Human(String name){
         this.name = name;
-        this.total = total;
     }
 
     //Méthode qui retourne le nom d'un joueur
