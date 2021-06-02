@@ -38,8 +38,6 @@ public class NegaMax implements GamePlayer{
             return res;
         }
     }
-
-    //Algorithme negamax qui retourne en fonction de l'evaluation le meilleur coup possible
     public int negaMax(AbstractGame situation, GamePlayer p_courant){
         int valeur = -10;
         int meilleureValeur = -10;

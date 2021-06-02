@@ -11,7 +11,7 @@ public class MinMaxPlayer implements GamePlayer {
     public String toString(){
         return "Joueur optimisé #" + this.hashCode();
     }
-	public int minMax(AbstractGame2JSansHasard game,GamePlayer p, boolean isMax) {
+	public int minMax(AbstractGame2JSansHasard game,GamePlayer p, boolean isMax ) {
         if (game.getWinner() == p){
             return +1;
         }
@@ -23,7 +23,6 @@ public class MinMaxPlayer implements GamePlayer {
             //Situation non terminale
             
         }else {
-        	System.out.println(isMax);
         	if(isMax) {
         		int valeur = -10000;
         		AbstractGame2JSansHasard situation;
@@ -46,9 +45,9 @@ public class MinMaxPlayer implements GamePlayer {
 		}
 	}
 	public int coupAJouer(AbstractGame2JSansHasard situation,GamePlayer p_courant) {
-		int valeur =-10000;
-		int valeurmax = -10000;
-		int meilleurCoup =-10000;
+		int valeur =Integer.MIN_VALUE;
+		int valeurmax = Integer.MIN_VALUE;
+		int meilleurCoup =Integer.MIN_VALUE;
 		AbstractGame2JSansHasard situation2;
         for (int coup : situation.validMoves()) {
             situation2 =  (AbstractGame2JSansHasard) situation.getCopy();

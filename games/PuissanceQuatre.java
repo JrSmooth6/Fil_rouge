@@ -53,8 +53,8 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
 	}
 	public GamePlayer verifDiagGD(GamePlayer p) {
 		for (int i = 0; i<3;i++) {
-			for (int j=0;j<4;j++) {
-				if( grid[i][j]== p && grid[i+1][j+1]==p && grid[i+1][j+1]== p && grid[i+2][j+2]==p && grid[i+2][j+2]== p && grid[i+3][j+3]==p) {
+			for (int j=6;j>3;j--) {
+				if( grid[i][j]== p && grid[i+1][j-1]==p && grid[i+1][j-1]== p && grid[i+2][j-2]==p && grid[i+2][j-2]== p && grid[i+3][j-3]==p) {
 					return p;
 				}
 			}
@@ -95,7 +95,7 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
 		this.grid[this.getProfondeur(nb)][nb]= this.p_courant;
 	}
 	public Boolean isOver() {
-		if(this.verif(this.p1)!=null||this.verif(this.p2)!=null) {
+		if(this.verif(this.p1)!=null||this.verif(this.p2)!=null||this.validMoves().size()==0){
 			return true;
 		}else {
 			return false;

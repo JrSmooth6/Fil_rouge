@@ -175,10 +175,12 @@ public class PileOuFace extends AbstractGame2JAvecHasard{
 		System.out.println(this.p_courant);
 		if(this.p_courant == this.p1) {
 			if(nb==0){
+				System.out.println("Refus");
 				this.ajoutCagnotte(p1);
 				this.cagnotte = 0;
 				this.p_courant = this.p2;
-			}if(nb==1) {
+				System.out.println(this.p_courant);
+			}else {
 				this.p_courant = this.naturePlayer;
 				this.player_precedent=this.p1;
 			}
@@ -206,7 +208,6 @@ public class PileOuFace extends AbstractGame2JAvecHasard{
 					
 				}else{
 					this.p_courant=this.p1;
-					System.out.println(this.getEsperance(this.getProba(this.p1)));
 				}
 			}
 		}

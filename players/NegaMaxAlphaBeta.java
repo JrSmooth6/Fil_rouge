@@ -36,6 +36,8 @@ public class NegaMaxAlphaBeta implements GamePlayer {
         }
     }
     public int choixCoup(AbstractGame situation, GamePlayer p_courant){
+    	float tempsDepart = System.currentTimeMillis();
+
         int valeur = -10;
         int meilleureValeur = -10;
         int meilleurCoup = -10;
@@ -50,6 +52,8 @@ public class NegaMaxAlphaBeta implements GamePlayer {
                 meilleurCoup = coup;
             }
         }
+    	float arrive = System.currentTimeMillis();
+    	System.out.println(arrive-tempsDepart);
         return meilleurCoup;
     }
 

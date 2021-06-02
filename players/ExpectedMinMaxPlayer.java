@@ -37,9 +37,11 @@ public class ExpectedMinMaxPlayer implements GamePlayer{
 			   return alpha;
 		   }
 	   }
-	@Override
+	
 	public int chooseMove(AbstractGame game) {
-		// TODO Auto-generated method stub
-		return 0;
+		return coupAJouer(game);
+	}
+	public int coupAJouer(AbstractGame game) {
+		return 1;
 	}
 }
