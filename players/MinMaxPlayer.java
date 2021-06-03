@@ -11,17 +11,9 @@ public class MinMaxPlayer implements GamePlayer {
     public String toString(){
         return "Joueur optimisé #" + this.hashCode();
     }
-	public int minMax(AbstractGame2JSansHasard game,GamePlayer p, boolean isMax ) {
-        if (game.getWinner() == p){
-            return +1;
-        }
-        if (game.isOver() && game.getWinner() == null){
-            return 0;
-        }
-        if (game.isOver() && game.getWinner() != p){
-            return -1;
-            //Situation non terminale
-            
+	public int minMax(AbstractGame2JSansHasard game,GamePlayer p, boolean isMax,int profondeur) {
+		if (game.isOver()==true|| profondeur ==0) {
+			return game.getHeuristicValue(p);
         }else {
         	if(isMax) {
         		int valeur = -10000;
@@ -29,7 +21,7 @@ public class MinMaxPlayer implements GamePlayer {
         		for (int coup : game.validMoves()) {
         			situation = (AbstractGame2JSansHasard) game.getCopy();
         			situation.jouerUnCoup(coup);
-        			valeur = Math.max(valeur, minMax(situation,p,false));
+        			valeur = Math.max(valeur, minMax(situation,p,false,profondeur-1));
         		}
         		return valeur;
         	}else{
@@ -38,7 +30,7 @@ public class MinMaxPlayer implements GamePlayer {
 				for (int coup: game.validMoves()) {
 					situation = (AbstractGame2JSansHasard) game.getCopy();
 					situation.jouerUnCoup(coup);
-					valeur = Math.min(valeur,minMax(situation,p,true));
+					valeur = Math.min(valeur,minMax(situation,p,true,profondeur-1));
 				}
 				return valeur;
 			}
@@ -52,7 +44,7 @@ public class MinMaxPlayer implements GamePlayer {
         for (int coup : situation.validMoves()) {
             situation2 =  (AbstractGame2JSansHasard) situation.getCopy();
             situation2.jouerUnCoup(coup);
-            valeur = minMax(situation2,p_courant,false);
+            valeur = minMax(situation2,p_courant,false,3);
             if (valeur > valeurmax){
                 valeurmax = valeur;
                 meilleurCoup = coup;

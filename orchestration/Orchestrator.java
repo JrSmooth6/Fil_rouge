@@ -60,10 +60,13 @@ public class Orchestrator{
     	resultat.add(0);
     	resultat.add(0);
     	for (int i = 0;i<nb;i++) {
-    		
-    		while(game.isOver()==false || game.validMoves().size()!=0) {
+    		System.out.println(i);
+    		while(game.isOver()==false) {
     			int nbi = game.getPlayerCourant().chooseMove(game);
     			game.jouerUnCoup(nbi);
+                if (game.validMoves().size() == 0){
+                    break;
+                }
     		}
     		if (game.isOver() == true && game.getWinner() == null){
     			resultat.set(1, resultat.get(1)+1);
@@ -75,10 +78,11 @@ public class Orchestrator{
     	          }	
  			}if(choix == 2) {
  				 game = new TicTacToe(game.p1,game.p2);		
- 			}else if(choix==6) {
+ 			}if(choix==6) {
 				game = new PuissanceQuatre(game.p1,game.p2);
-    	}	else if(choix ==3) {
-    			game = new Nim(nbD,nbM,game.p1,game.p2);
+				
+ 			}if(choix ==3) {
+    			 game = new Nim(nbD,nbM,game.p1,game.p2);
     	}
  			System.out.println(i);
     	}

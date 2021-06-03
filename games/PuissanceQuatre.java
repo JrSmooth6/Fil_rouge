@@ -53,8 +53,8 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
 	}
 	public GamePlayer verifDiagGD(GamePlayer p) {
 		for (int i = 0; i<3;i++) {
-			for (int j=6;j>3;j--) {
-				if( grid[i][j]== p && grid[i+1][j-1]==p && grid[i+1][j-1]== p && grid[i+2][j-2]==p && grid[i+2][j-2]== p && grid[i+3][j-3]==p) {
+			for (int j=0;j<4;j++) {
+				if( grid[i][j]== p && grid[i+1][j+1]==p && grid[i+1][j+1]== p && grid[i+2][j+2]==p && grid[i+2][j+2]== p && grid[i+3][j+3]==p) {
 					return p;
 				}
 			}
@@ -62,7 +62,7 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
 		return null;
 	}
 	public GamePlayer verifDiagDG(GamePlayer p) {
-		for (int i = 5; i>2;i=i-1) {
+		for (int i = 5; i>2;i--) {
 			for (int j=0;j<4;j++) {
 				if( grid[i][j]==p && grid[i-1][j+1]==p && grid[i-1][j+1]==p && grid[i-2][j+2]==p  && grid[i-2][j+2]== p &&grid[i-3][j+3]==p) {
 					return p;
@@ -205,12 +205,12 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
     }
     public boolean verifCasesDiagonalesDG(GamePlayer p, int nb) {
     	for (int i = 5;i>0+(nb-1);i--){
-    		for (int j= 6;j>this.grid[i].length-(nb-1);j--) {
+    		for (int j= 0;j<this.grid[i].length-(nb-1);j--) {
     			if(nb == 2) {
-    				if(this.grid[i][j]==p && this.grid[i-1][j-1]==p) {
+    				if(this.grid[i][j]==p && this.grid[i-1][j+1]==p) {
     					return true;
     				}else {
-        				if(this.grid[i][j]==p && this.grid[i-1][j-1]==p && this.grid[i-2][j-2]==p) {
+        				if(this.grid[i][j]==p && this.grid[i-1][j+1]==p && this.grid[i-2][j+2]==p) {
         					return true;
         				}
     				}
@@ -234,41 +234,13 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
     	}
     }
 	public int getHeuristicValue(GamePlayer p) {
-		if (p == this.p1) {
-			if(this.getWinner() == p) {
-				return 4;
-			}else {
-				if(this.getWinner()==this.p2) {
-					return 0;
-				}else if(this.getWinner()==null) {
-					return 4;
-				}else if(this.verif2Cases(p)==true) {
-					if(this.verif3Cases(p)==true) {
-						return 3;
-					}else {
-						return 2;
-					}
-				}
-			}
+		if(this.getWinner()==p) {
+			return 1;
+		}if (this.getWinner()==null) {
+			return 0;
+		}else {
+			return -1;
 		}
-		if (p == this.p2) {
-			if(this.getWinner() == p) {
-				return 4;
-			}else {
-				if(this.getWinner()==this.p1) {
-					return 0;
-				}else if(this.getWinner()==null) {
-					return 4;
-				}else if(this.verif2Cases(p)==true) {
-					if(this.verif3Cases(p)==true) {
-						return 3;
-					}else {
-						return 2;
-					}
-				}
-			}
-		}
-		return 1;
 	}
 	@Override
 	public HashMap<Integer, Float> getProba(GamePlayer naturePlayer2) {
