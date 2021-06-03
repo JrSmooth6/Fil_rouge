@@ -53,8 +53,11 @@ public class Game{
 				return game;			
 			}
 			else if (jeu==4) {
-				GamePlayer p1 = new Human("H");
-				GamePlayer p2 = new Human("C");
+				System.out.println("Joueur 1 : ");
+				GamePlayer p1 = this.choixJoueur();
+				System.out.println("Joueur 2 : ");
+				GamePlayer p2 = this.choixJoueur();
+				System.out.println("Nb de départ : ");
 				ArrayList<Carte> deck = new ArrayList<Carte>();
 				Deck tas = new Deck(deck);
 				tas.createDeck();
@@ -124,6 +127,12 @@ public class Game{
 			return joueur;
 		}else if(type.compareTo("minmax")==0) {
 			GamePlayer joueur = new MinMaxPlayer();
+			return joueur;
+		}else if(type.compareTo("negamaxalpha")==0) {
+			GamePlayer joueur = new NegaMaxAlphaBeta();
+			return joueur;
+		}else if(type.compareTo("expectiminmax")==0) {
+			GamePlayer joueur = new ExpectedMinMaxPlayer();
 			return joueur;
 		}
 		else {

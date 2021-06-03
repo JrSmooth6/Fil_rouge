@@ -72,16 +72,15 @@ public class Nim extends AbstractGame2JSansHasard{  /* La classeNim est une exte
 
 	
 	public int getHeuristicValue(GamePlayer p) {
-			if(this.taille_courant==1) {
-				return 0;
-			}if(this.taille_courant==2) {
-				return 3;
-			}if(this.taille_courant==this.nb_max+1) {
-				return 3;
-			}else {
-				return 1;
-			}
+		if(this.getWinner()==p) {
+			return 1;
+		}if(this.getWinner()==null) {
+			return 0;
+		}else {
+			return -1;
+		}
 	}
+
 
 	@Override
 	public HashMap<Integer, Float> getProba(GamePlayer naturePlayer2) {

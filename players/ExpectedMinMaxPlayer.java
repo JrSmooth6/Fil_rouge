@@ -7,24 +7,24 @@ public class ExpectedMinMaxPlayer implements GamePlayer{
 	   public String toString(){
 	        return "Joueur optimisé #" + this.hashCode();
 	    }
-	   public float expectiMinMax(AbstractGame game, int profondeur) {
+	   public float expectiMinMax(AbstractGame game, int profondeur,GamePlayer p) {
 		   if(game.isOver()==true || profondeur == 0) {
 			   return game.getHeuristicValue(game.p_courant);
-		   }else if(game.p_courant==game.p1) {
+		   }else if(game.p_courant!=p) {
 			   float alpha = 10000;
 			   for(int coup : game.validMoves()) {
 				   AbstractGame situation2 = game.getCopy();
 				   situation2.jouerUnCoup(coup);
-				   alpha = Math.min(alpha, expectiMinMax(situation2,profondeur-1));
+				   alpha = Math.min(alpha, expectiMinMax(situation2,profondeur-1,p));
 				   
 			   }
 			   return alpha;
-		   }else if(game.p_courant == game.p2) {
+		   }else if(game.p_courant==p) {
 			   float alpha = -10000;
 			   for (int coup:game.validMoves()) {
 				   AbstractGame situation2 = game.getCopy();
 				   situation2.jouerUnCoup(coup);
-				   alpha = Math.max(alpha,expectiMinMax(situation2, profondeur -1));
+				   alpha = Math.max(alpha,expectiMinMax(situation2, profondeur -1,p));
 			   }
 			   return alpha;
 		   }else{
@@ -32,7 +32,7 @@ public class ExpectedMinMaxPlayer implements GamePlayer{
 			   for(int coup : game.validMoves()) {
 				   AbstractGame situation2 = game.getCopy();
 				   situation2.jouerUnCoup(coup);
-				   alpha += (situation2.getEsperance(situation2.getProba(situation2.player_precedent)))*this.expectiMinMax(situation2, profondeur-1);
+				   alpha += (situation2.getEsperance(situation2.getProba(situation2.player_precedent)))*this.expectiMinMax(situation2, profondeur-1,p);
 			   }
 			   return alpha;
 		   }
@@ -41,7 +41,22 @@ public class ExpectedMinMaxPlayer implements GamePlayer{
 	public int chooseMove(AbstractGame game) {
 		return coupAJouer(game);
 	}
-	public int coupAJouer(AbstractGame game) {
-		return 1;
+	public int coupAJouer(AbstractGame situation) {
+		GamePlayer p = situation.p_courant;
+        float valeur = -10;
+        float meilleureValeur = -10;
+        int meilleurCoup = -10;
+        AbstractGame situation2;
+
+        for (int coup : situation.validMoves()) {
+            situation2 =  situation.getCopy();
+            situation2.jouerUnCoup(coup);
+            valeur = expectiMinMax(situation2,3,p);
+            if (valeur > meilleureValeur){
+                meilleureValeur = valeur;
+                meilleurCoup = coup;
+            }
+        }
+        return meilleurCoup;
 	}
 }

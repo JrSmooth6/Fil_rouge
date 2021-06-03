@@ -61,8 +61,12 @@ public class PileOuFace extends AbstractGame2JAvecHasard{
 
 	public AbstractGame getCopy() {
 		PileOuFace copy = new PileOuFace(this.p1,this.p2,this.cagnotte);
-		copy.liste.set(0,this.liste.get(0));
-		copy.liste.set(1, this.liste.get(1));
+		ArrayList<Integer> listecopy = new ArrayList<Integer>();
+		listecopy.add(0);
+		listecopy.add(0);
+		listecopy.set(0,this.liste.get(0));
+		listecopy.set(1, this.liste.get(1));
+		copy.liste = listecopy;
 		return copy;
 	}
 
