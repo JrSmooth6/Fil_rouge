@@ -11,16 +11,10 @@ public class NegaMaxAlphaBeta implements GamePlayer {
 	   public String toString(){
 	        return "Joueur optimisé #" + this.hashCode();
 	    }
-    public int negaMax(AbstractGame situation, GamePlayer p_courant,int profondeur,int alpha,int beta){
-        if (situation.getWinner() == p_courant){
-            return +1;
-        }
-        if (situation.isOver() && situation.getWinner() == null){
-            return 0;
-        }
-        if (situation.isOver() && situation.getWinner() != p_courant){
-            return -1;
-        }
+    public int negaMax(AbstractGame situation, GamePlayer p,int profondeur,int alpha,int beta){
+    	if(situation.isOver()==true || profondeur ==0) {
+    		return situation.getHeuristicValue(p);
+    	}
         else{ //la situation n'est pas finale
             int res = -10;
             AbstractGame2JSansHasard situation2;
@@ -36,8 +30,6 @@ public class NegaMaxAlphaBeta implements GamePlayer {
         }
     }
     public int choixCoup(AbstractGame situation, GamePlayer p_courant){
-    	float tempsDepart = System.currentTimeMillis();
-
         int valeur = -10;
         int meilleureValeur = -10;
         int meilleurCoup = -10;
@@ -46,14 +38,12 @@ public class NegaMaxAlphaBeta implements GamePlayer {
         for (int coup : situation.validMoves()) {
             situation2 =  situation.getCopy();
             situation2.jouerUnCoup(coup);
-            valeur = -negaMax(situation2, situation2.p_courant,1,-1000,1000);
+            valeur = -negaMax(situation2, situation2.p_courant,3,-1000,1000);
             if (valeur > meilleureValeur){
                 meilleureValeur = valeur;
                 meilleurCoup = coup;
             }
         }
-    	float arrive = System.currentTimeMillis();
-    	System.out.println(arrive-tempsDepart);
         return meilleurCoup;
     }
 
