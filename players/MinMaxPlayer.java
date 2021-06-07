@@ -44,7 +44,7 @@ public class MinMaxPlayer implements GamePlayer {
         for (int coup : situation.validMoves()) {
             situation2 =  (AbstractGame) situation.getCopy();
             situation2.jouerUnCoup(coup);
-            valeur = minMax(situation2,p_courant,false,4);
+            valeur = minMax(situation2,p_courant,false,1);
             if (valeur > valeurmax){
                 valeurmax = valeur;
                 meilleurCoup = coup;

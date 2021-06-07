@@ -2,21 +2,17 @@ package players;
 import games.*;
 
 
-//Classe du joueur negaMax, le joueur automatique et relativement optimisé
 public class NegaMax implements GamePlayer{
     public NegaMax(){
     }
-    //Méthode qui retourne le "nom" du joueur negaMax(Nombre aléatoire)
     public String toString(){
         return "Joueur optimisé #" + this.hashCode();
     }
 
-    //Méthode qui retourne le meilleur coup possible en vue de la situation actuelle selon l'algorithme negamax
     public int chooseMove(AbstractGame game){
         return negaMax(game, game.p_courant);
     }
 
-    //Méthode qui evalue la situation
     public int evaluer(AbstractGame situation, GamePlayer p_courant){
         if (situation.getWinner() == p_courant){
             return +1;
@@ -27,7 +23,7 @@ public class NegaMax implements GamePlayer{
         if (situation.isOver() && situation.getWinner() != p_courant){
             return -1;
         }
-        else{ //la situation n'est pas finale
+        else{ 
             int res = -10;
             AbstractGame2JSansHasard situation2;
             for (int coup : situation.validMoves()) {

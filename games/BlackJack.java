@@ -139,7 +139,6 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 		return esperance;
 	}
 	public void jouerUnCoup(int nb) {
-		System.out.println(this.p_courant);
 		if(this.p_courant == this.p1) {
 			if(this.ArrayListeStatuts.get(0)==true) {
 				if(nb==0){

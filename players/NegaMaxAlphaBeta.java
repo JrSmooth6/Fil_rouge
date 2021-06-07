@@ -15,7 +15,7 @@ public class NegaMaxAlphaBeta implements GamePlayer {
     	if(situation.isOver()==true || profondeur ==0) {
     		return situation.getHeuristicValue(p);
     	}
-        else{ //la situation n'est pas finale
+        else{
             int res = -10;
             AbstractGame2JSansHasard situation2;
             for (int coup : situation.validMoves()) {

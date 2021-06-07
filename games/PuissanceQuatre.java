@@ -235,12 +235,45 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
     }
 	public int getHeuristicValue(GamePlayer p) {
 		if(this.getWinner()==p) {
-			return 1;
-		}if (this.getWinner()==null) {
-			return 0;
-		}else {
+			return 10;
+		}if(this.getWinner()!=p) {
 			return -1;
+		}if(this.getWinner()==null) {
+			if(this.p1==p) {
+				if(this.verif3Cases(p)==true) {
+					if(this.verif3Cases(this.p2)==true) {
+						return 2;
+					}else {
+						return 3;
+					}
+				}if(this.verif2Cases(p)==true) {
+					if(this.verif3Cases(this.p2)==true) {
+						return 0;
+					}if(this.verif2Cases(this.p2)==true) {
+						return 1;
+					}else {
+						return 2;
+					}
+				}
+			}else {
+				if(this.verif3Cases(p)==true) {
+					if(this.verif3Cases(this.p2)==true) {
+						return 2;
+					}else {
+						return 3;
+					}
+				}if(this.verif2Cases(p)==true) {
+					if(this.verif3Cases(this.p2)==true) {
+						return 0;
+					}if(this.verif2Cases(this.p2)==true) {
+						return 1;
+					}else {
+						return 2;
+					}
+				}
+			}
 		}
+		return 0;
 	}
 	@Override
 	public HashMap<Integer, Float> getProba(GamePlayer naturePlayer2) {

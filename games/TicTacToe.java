@@ -4,62 +4,54 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TicTacToe extends AbstractGame2JSansHasard{ /* La  classe TicTacToe est une extension AbstractGame (classe abstraite)*/
-    public GamePlayer [][] grid; /* Cette variable correpond à une grille dans laquelle les objets seront des joueurs */
-
+public class TicTacToe extends AbstractGame2JSansHasard{ 
+    public GamePlayer [][] grid; 
     public TicTacToe(GamePlayer p1, GamePlayer p2){
-        super(p1,p2); /* p1 et p2 sont définies dans AbstractGame, ils correspondent aux joueurs*/
-        this.grid = new GamePlayer [3][3]; /* Initialisation de la grille du jeu de taille 3*3 */
+        super(p1,p2); 
+        this.grid = new GamePlayer [3][3];
     }
-
-    public void execUnCoup(int nb){ /*méthode pour executer un coup */
-        if (!validMoves().contains(nb)){ /*Si le nombre n'est pas contenu dans la méthode validmove */
-            throw new IllegalArgumentException("Le coup joué n'est pas valide.");/* alors evidement on affiche le coup n'est pas valide*/
+    public void execUnCoup(int nb){ 
+        if (!validMoves().contains(nb)){ 
+            throw new IllegalArgumentException("Le coup joué n'est pas valide.");
         }
-        this.grid[(nb-1)/3][(nb-1)%3] = this.p_courant;/*this.grid[(nb-1)/3][(nb-1)%3] correpond à
-        la case concernée en fonction du nombre, la case selectionnée est ensuite égale au joueur qui joue  */
+        this.grid[(nb-1)/3][(nb-1)%3] = this.p_courant;
     }
 
     public List<Integer> validMoves(){
-        int c = 1; /*creation de c correspondant à chaque case de la grille comme il y a 9 cases c à 9 valeurs possibles*/
-        List<Integer> list = new ArrayList<> (); /*Creation d'une nouvelle liste qui contiendra les coups jouables*/
-        for (int i=0; i<grid.length ; i++){  /* Pour chaque ligne de la grille du jeu*/
-            for (int j=0; j<this.grid[0].length ; j++){ /*et pour chaque colone de la grille du jeu*/
-                if (this.grid[i][j] == null){ /*Si la valeur contenue dans this.grid[i][j] est "null" (donc la case)*/
-                    list.add(c); /*alors on ajoute c à la liste des nombres jouables*/
+        int c = 1; 
+        List<Integer> list = new ArrayList<> ();
+        for (int i=0; i<grid.length ; i++){ 
+            for (int j=0; j<this.grid[0].length ; j++){ 
+                if (this.grid[i][j] == null){ 
+                    list.add(c); 
                 }
-                c++;  /*c prends la valeur  c+1 (pour la prochaine case)*/
+                c++; 
             }
         }
-        return list; /*On retourne finalement la liste avec tout les coups jouables*/
+        return list; 
     }
 
     public String moveToString(Integer move){
-        return "Case ("+(move-1)/3+","+(move-1)%3+")"; /*Methode retournant la case (i,j) modifiée
-        durant le tour du joueur courant */
+        return "Case ("+(move-1)/3+","+(move-1)%3+")"; 
     }
 
-    public String situationToString(){/*Methode retournant l'affichage de la grille*/
-        String res = "";    /*Variable  contenant l'affichage de la grille */
+    public String situationToString(){
+        String res = "";  
         for (int i=0; i<grid.length ; i++){
-            for (int j=0; j<this.grid[0].length ; j++){  /* Pour chaque j de la ligne i*/
-                if (this.grid[i][j] == null){ /*Si la valeur de la case est null*/
-                    res += ". ";          /*On ajoute à la variable res "." (avec un espace afin de séparer chaque case)*/
-                } else if (this.grid[i][j] == this.p1){ /*Si la case est celle du joueurs 1 */
-                    res += "X ";  /*On ajoute à la variable res X (avec un espace à fin de séparer chaque case)*/
-                } else {  /*Sinon la case est celle du joueurs 2 */
-                    res += "O "; /*On ajoute à la variable res . (avec un espace à fin de séparer chaque case)*/
+            for (int j=0; j<this.grid[0].length ; j++){ 
+                if (this.grid[i][j] == null){ 
+                    res += ". ";         
+                } else if (this.grid[i][j] == this.p1){ 
+                    res += "X ";  
+                } else { 
+                    res += "O "; 
                 }
             }
-            res += System.lineSeparator();  /*Fonction permettant un retour à la ligne ici utilisé à
-            chaque ligne i à fin de les separer (il y a 3 lignes et 3 colones donc 9 cases )*/
-
+            res += System.lineSeparator(); 
         }
-        return res;  /* On retourne alors à la fin le petit affichage (ressemblantà la grille du morpion) créer à partir
-        d'un simple String*/
+        return res;  
     }
 
-    //Methode qui parcourt toute la grille pour trouver les combinaisons qui font gagner un joueur
     public GamePlayer getWinner(){
         boolean test = true;
         for (int i=0; i<3; i++) {
@@ -87,10 +79,10 @@ public class TicTacToe extends AbstractGame2JSansHasard{ /* La  classe TicTacToe
             }
         }
 
-        return null; //pas de gagnant ? on retourne null
+        return null; 
     }
 
-    public AbstractGame2JSansHasard getCopy(){//Methode qui copie la grille du jeu en profondeur pour prévoir les meilleurs coups avec MinMaxPlayer
+    public AbstractGame2JSansHasard getCopy(){
         TicTacToe res = new TicTacToe(super.p1,super.p2);
         for (int i=0; i<grid.length ; i++){
             for (int j=0; j<this.grid[0].length ; j++){

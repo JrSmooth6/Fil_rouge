@@ -1,15 +1,11 @@
 package orchestration;
-//On importe les packages players et games pour utiliser les joueurs quel que soit type et n'importe quel jeu
 import games.*;
 import players.*;
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import cartesAJouer.Carte;
 import cartesAJouer.Deck;
 import players.*;
-//Classe principale du jeu
 public class Game{
 	public void lancerJeu(AbstractGame jeu) {
 		Orchestrator capichef = new Orchestrator();
@@ -68,8 +64,10 @@ public class Game{
 				bj.init();
 				return bj;		}
 			else if (jeu ==5) {
-				GamePlayer p1 =new Human("h");
-				GamePlayer p2 = new Human("C");
+				System.out.println("Joueur 1 : ");
+				GamePlayer p1 = this.choixJoueur();
+				System.out.println("Joueur 2 : ");
+				GamePlayer p2 = this.choixJoueur();
 				int[][]gridj1=null;
 				int[][]gridj2=null;
 				BatailleNavale bn = new BatailleNavale(p1,p2,gridj1,gridj2);
@@ -83,8 +81,10 @@ public class Game{
 				PuissanceQuatre pq = new PuissanceQuatre(p1,p2);
 				return pq;
 				}else if(jeu==7) {
-				GamePlayer p1 = new Human("h");
-				GamePlayer p2 = new ExpectedMinMaxPlayer();
+				System.out.println("Joueur 1 : ");
+				GamePlayer p1 = this.choixJoueur();
+				System.out.println("Joueur 2 : ");
+				GamePlayer p2 = this.choixJoueur();
 				PileOuFace pf = new PileOuFace(p1,p2,0);
 				pf.init();
 				return pf;
