@@ -142,7 +142,7 @@ public class Game{
 	public int  choixJeu() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("A quel jeu souhaiter vous jouer ? ");
-		System.out.println("1 : Bataille ; 2 : Morpion ; 3 : Nim ; 4 : BlackJack ; 5 : Bataille Navale  ; 6 : Puissance 4; 7 : Pile ou Face; 8 : Comparaison");
+		System.out.println("1 : Bataille ; 2 : Morpion ; 3 : Nim ; 4 : BlackJack ; 5 : Bataille Navale  ; 6 : Puissance 4; 7 : Pile ou Face;");
 		int jeu = scanner.nextInt();
 		while(jeu>8||jeu<0) {
 			System.out.println("Veuillez selectionnez un jeu");

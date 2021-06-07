@@ -183,7 +183,6 @@ public class PileOuFace extends AbstractGame2JAvecHasard{
 				this.ajoutCagnotte(p1);
 				this.cagnotte = 0;
 				this.p_courant = this.p2;
-				System.out.println(this.p_courant);
 			}else {
 				this.p_courant = this.naturePlayer;
 				this.player_precedent=this.p1;
@@ -219,7 +218,7 @@ public class PileOuFace extends AbstractGame2JAvecHasard{
 	public HashMap<Integer, Float> getProba(GamePlayer naturePlayer2) {
 		return null;
 	}
-	public float getEsperance(HashMap<Integer, Float> map) {
+	public float getEsperance(GamePlayer p) {
 
 		return this.cagnotte/2;
 	}

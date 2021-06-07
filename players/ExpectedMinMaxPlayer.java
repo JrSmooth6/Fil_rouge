@@ -9,7 +9,7 @@ public class ExpectedMinMaxPlayer implements GamePlayer{
 	    }
 	   public float expectiMinMax(AbstractGame game, int profondeur,GamePlayer p) {
 		   if(game.isOver()==true || profondeur == 0) {
-			   return game.getHeuristicValue(game.p_courant);
+			   return game.getHeuristicValue(p);
 		   }else if(game.p_courant!=p) {
 			   float alpha = 10000;
 			   for(int coup : game.validMoves()) {
@@ -32,7 +32,8 @@ public class ExpectedMinMaxPlayer implements GamePlayer{
 			   for(int coup : game.validMoves()) {
 				   AbstractGame situation2 = game.getCopy();
 				   situation2.jouerUnCoup(coup);
-				   alpha += (situation2.getEsperance(situation2.getProba(situation2.player_precedent)))*this.expectiMinMax(situation2, profondeur-1,p);
+				   System.out.print(situation2.getEsperance(situation2.player_precedent));
+				   alpha += (situation2.getEsperance(situation2.player_precedent)*this.expectiMinMax(situation2, profondeur-1,p));
 			   }
 			   return alpha;
 		   }
@@ -42,6 +43,7 @@ public class ExpectedMinMaxPlayer implements GamePlayer{
 		return coupAJouer(game);
 	}
 	public int coupAJouer(AbstractGame situation) {
+		System.out.println(situation.p_courant);
 		GamePlayer p = situation.p_courant;
         float valeur = -10;
         float meilleureValeur = -10;
@@ -51,7 +53,7 @@ public class ExpectedMinMaxPlayer implements GamePlayer{
         for (int coup : situation.validMoves()) {
             situation2 =  situation.getCopy();
             situation2.jouerUnCoup(coup);
-            valeur = expectiMinMax(situation2,3,p);
+            valeur = expectiMinMax(situation2,1,p);
             if (valeur > meilleureValeur){
                 meilleureValeur = valeur;
                 meilleurCoup = coup;

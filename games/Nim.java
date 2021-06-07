@@ -82,7 +82,7 @@ public class Nim extends AbstractGame2JSansHasard{
 	}
 
 	@Override
-	public float getEsperance(HashMap<Integer, Float> map) {
+	public float getEsperance(GamePlayer p ) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

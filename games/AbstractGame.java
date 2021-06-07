@@ -29,6 +29,6 @@ public abstract class AbstractGame {
     public abstract int getHeuristicValue(GamePlayer p);
     public abstract void jouerUnCoup(int nb);
 	public abstract HashMap<Integer,Float> getProba(GamePlayer naturePlayer2);
-	public abstract float getEsperance(HashMap<Integer,Float> map);
+	public abstract float getEsperance(GamePlayer p);
 
 }

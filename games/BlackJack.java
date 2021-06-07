@@ -16,7 +16,7 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 		this.ArrayListeTotals = ArrayListeTotals;
 		this.ArrayListeStatuts = ArrayListeStatuts;
 		this.deck = deck;
-		this.player_precedent = this.p1;
+		this.player_precedent=this.p1;
 		this.naturePlayer = new NaturePlayer();
 	}
 
@@ -67,47 +67,60 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 		
 	}
 	public Boolean isOver() {
-		return( ((this.ArrayListeStatuts.get(0)==false) && (this.ArrayListeStatuts.get(1)==false)) || ((this.ArrayListeTotals.get(0)>21) ||(this.ArrayListeTotals.get(1)>21)));
+		if(this.ArrayListeStatuts.get(0)==false &&this.ArrayListeStatuts.get(1)==false) {
+			return true;
+		}if(this.ArrayListeTotals.get(0)>21||this.ArrayListeTotals.get(1)>21) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 
 	public BlackJack getCopy() {
-		BlackJack copy = new BlackJack(this.p1,this.p2,this.deck,this.ArrayListeTotals,this.ArrayListeStatuts);
+		ArrayList <Integer>copyTotaux = new ArrayList<Integer>();
+		copyTotaux.add(this.ArrayListeTotals.get(0));
+		copyTotaux.add(this.ArrayListeTotals.get(1));
+		ArrayList <Boolean>copyStatus = new ArrayList<Boolean>();
+		copyStatus.add(this.ArrayListeStatuts.get(0));
+		copyStatus.add(this.ArrayListeStatuts.get(1));
+		Deck copyDeck = this.deck;
+
+		
+		BlackJack copy = new BlackJack(this.p1,this.p2,copyDeck,copyTotaux,copyStatus);
+		copy.player_precedent = this.player_precedent;
 		return copy;
 	}
 	public int getHeuristicValue(GamePlayer p) {
-		if(p==this.p1) {
-			if(this.ArrayListeTotals.get(0)>21) {
-				return 0;
-			}else if(this.ArrayListeTotals.get(0)<21) {
-				if(this.ArrayListeTotals.get(0)>18 && this.ArrayListeTotals.get(1)<this.ArrayListeTotals.get(0)) {
+
+		if(this.p1 == p) {
+			if(this.ArrayListeTotals.get(0)==0) {
+				return -1;
+			}if(this.ArrayListeTotals.get(0)>this.ArrayListeTotals.get(1)) {
+				if(this.ArrayListeTotals.get(0)<13) {
 					return 3;
-				}if(this.ArrayListeTotals.get(1)>21) {
+				}else {
 					return 4;
-				}if(this.ArrayListeTotals.get(0)<18 && this.ArrayListeTotals.get(1)<this.ArrayListeTotals.get(0)) {
-					return 2;
-				}if(this.ArrayListeTotals.get(0)<18 && this.ArrayListeTotals.get(1)>this.ArrayListeTotals.get(0)) {
-					return 1;
 				}
+			}if(this.ArrayListeTotals.get(0)<this.ArrayListeTotals.get(1)) {
+				return 2;
 			}
-		}
-		if(p==this.p2) {
-			if(this.ArrayListeTotals.get(1)>21) {
-				return 0;
-			}else if(this.ArrayListeTotals.get(1)<21) {
-				if(this.ArrayListeTotals.get(1)>18 && this.ArrayListeTotals.get(0)<this.ArrayListeTotals.get(1)) {
+		}else {
+			if(this.ArrayListeTotals.get(1)==0) {
+				return -1;
+			}if(this.ArrayListeTotals.get(1)>this.ArrayListeTotals.get(0)) {
+				if(this.ArrayListeTotals.get(1)<13) {
 					return 3;
-				}if(this.ArrayListeTotals.get(1)>21) {
+				}else {
 					return 4;
-				}if(this.ArrayListeTotals.get(1)<18 && this.ArrayListeTotals.get(0)<this.ArrayListeTotals.get(1)) {
-					return 2;
-				}if(this.ArrayListeTotals.get(1)<18 && this.ArrayListeTotals.get(0)>this.ArrayListeTotals.get(1)) {
-					return 1;
 				}
+			}if(this.ArrayListeTotals.get(1)<this.ArrayListeTotals.get(0)) {
+				return 2;
 			}
 		}
 		return 0;
 	}
+	
 	public HashMap<Integer,Float>  getProba(GamePlayer p) {
 		HashMap<Integer,Float> tableProbaBJ = new HashMap<>();
 		for(int i = 1;i<14;i++) {
@@ -129,15 +142,7 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 		}
 		return tableProbaBJ;	
 	}
-	
-	public float calculEsperance(GamePlayer p) {
-		float esperance = 0;
-		HashMap<Integer,Float> map = this.getProba(p);
-		for(int i :map.keySet()) {
-			esperance+=i*map.get(i);
-		}
-		return esperance;
-	}
+
 	public void jouerUnCoup(int nb) {
 		if(this.p_courant == this.p1) {
 			if(this.ArrayListeStatuts.get(0)==true) {
@@ -186,11 +191,16 @@ public class BlackJack extends AbstractGame2JAvecHasard{
 		
 	}
 
-	@Override
-	public float getEsperance(HashMap<Integer, Float> map) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public float getEsperance(GamePlayer p) {
+		float esperance = 0;
+		HashMap<Integer,Float> map = this.getProba(p);
+		for(int i :map.keySet()) {
+			esperance+=i*map.get(i);
+		}
+		return esperance; 
 	}
+
 
 
 

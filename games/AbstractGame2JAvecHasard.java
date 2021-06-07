@@ -14,4 +14,5 @@ public abstract class AbstractGame2JAvecHasard extends AbstractGame {
         return this.p_courant;
     }
 
+
 }

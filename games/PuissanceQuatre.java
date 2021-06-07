@@ -281,7 +281,7 @@ public class PuissanceQuatre extends AbstractGame2JSansHasard{
 		return null;
 	}
 	@Override
-	public float getEsperance(HashMap<Integer, Float> map) {
+	public float getEsperance(GamePlayer p) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
